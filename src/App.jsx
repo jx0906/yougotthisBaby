@@ -1,35 +1,36 @@
 import { useState, createContext, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import QuoteDay from "./components/QuoteDay";
 import "./App.css";
 
+const UserContext = createContext("null");
+
 function App() {
-  const UserContext = createContext("null");
-
-  <UserContext.Provider value={user}>
-    <h1>{`Hello ${user}!`}</h1>
-    <Component2 user={user} />
-  </UserContext.Provider>;
-
-  const [count, setCount] = useState(0);
+  const [userName, setUserName] = useState("");
 
   return (
     <>
-      <div>
-        <Link to="https://vitejs.dev">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </Link>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <UserContext.Provider value={userName}>
+        {/* to provide context variable with `value`, ie, data we wish the child
+        components to consume. */}
+        <div>
+          <QuoteDay />
+          <h1>YOU'VE GOT THIS, BABY!</h1>
+          {/* <Form name={loginPage}> */}
+          {/* <input value={userName}>Username</input>
+          <button>Login</button> */}
+          {/* </Form>
+          <Routes>
+            <Route path="/signup" element={<signUpForm />} />
+          </Routes>
+          <button type="submit">Sign up</button> */}
+
+          {/* <Link to="https://vitejs.dev">
+            <img src={viteLogo} className="logo" alt="Vite logo" />
+          </Link> */}
+        </div>
+      </UserContext.Provider>
+      ;
     </>
   );
 }
