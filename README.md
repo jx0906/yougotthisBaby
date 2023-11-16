@@ -7,7 +7,7 @@ Wireframe: https://miro.com/app/board/uXjVNQJDDXY=/#tpicker-content
 
 Checklist for self:
 
-- Use 3rd party API and Airtable
+- Use 3rd party API (quote of the day from Quotables) and Airtable
 - Use React framework to build your application with at least
   5 components
   4 props
@@ -31,3 +31,5 @@ Checklist for self:
 References:
 https://www.healthhub.sg/programmes/children-health-ehb
 https://ch-api.healthhub.sg/api/public/content/30de6c1e56d34868afb5fa6df399e082?v=35bba801&_gl=1*1a2ixlc*_ga*MzQ5NDMxMDc2LjE2OTk2NzExMDg.*_ga_VQW1KL2RMR*MTY5OTk2MDY0OC41LjEuMTY5OTk2MDY1MS41Ny4wLjA.
+
+Quote of the day - https://github.com/lukePeavey/quotable#get-random-quotes
