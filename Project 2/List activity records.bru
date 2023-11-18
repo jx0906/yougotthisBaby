@@ -1,0 +1,21 @@
+meta {
+  name: List activity records
+  type: http
+  seq: 5
+}
+
+get {
+  url: https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps?maxRecords=5&sort%5B0%5D%5Bfield%5D=dateTime&sort%5B0%5D%5Bdirection%5D=desc
+  body: none
+  auth: bearer
+}
+
+query {
+  maxRecords: 5
+  sort%5B0%5D%5Bfield%5D: dateTime
+  sort%5B0%5D%5Bdirection%5D: desc
+}
+
+auth:bearer {
+  token: patIefr5XHGrnjTal.ced0d2650e64835dc3f518858af97636f2d6498768decfc77447f76b11ca4e06
+}

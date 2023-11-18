@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Button } from "@chakra-ui/button";
+import Notification from "./notification";
 
 function ActivityForm({ babyName, babyProfile }) {
   const handleSignupSubmit = (event) => {
@@ -8,14 +10,11 @@ function ActivityForm({ babyName, babyProfile }) {
     console.log(formData);
     const data = Object.fromEntries(formData);
 
-    const payload = {
-      ...data,
-      celebrated: true,
-      description: "",
-      likes: 0,
-    };
+    async function createActivityRecord() {
+      evt.preventDefault();
+      const baseURL =
+        "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps";
 
-    async function createBaby(babySignupData) {
       const response = await fetch("http://localhost:3000/api/holidays", {
         method: "POST", // 'PUT', 'GET', 'DELETE'
         headers: {
@@ -33,19 +32,19 @@ function ActivityForm({ babyName, babyProfile }) {
   return (
     <>
       {/* <button type="click" img="insert settings icon" onClick={() => <SettingsPage/>}> */}
-      {/* <Notification/> */}
-      <div className = "activities">
+      <Notification />
+      <div className="activities">
         {/* <ActivityLog/> */}
         <button
-              style={{
-                marginTop: 20,
-                backgroundColor: "grey",
-                color: "white",
-              }}
-              type="submit"
-            >
-              Let's go!
-            </button>
+          style={{
+            marginTop: 20,
+            backgroundColor: "grey",
+            color: "white",
+          }}
+          type="submit"
+        >
+          Let's go!
+        </button>
       </div>
     </>
   );
