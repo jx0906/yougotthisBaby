@@ -35,9 +35,15 @@ function QuoteDay() {
   }, []); //only run on first payload
 
   return (
-    <div className="quoteOTDay">
-      <h2>{quoteData.content}</h2>
-      <h4>- {quoteData.author}</h4>
+    <div
+      className="quoteOTDay"
+      style={{
+        marginBottom: 50,
+        color: "black",
+      }}
+    >
+      <h4>{quoteData.content}</h4>
+      <h6>- {quoteData.author}</h6>
     </div>
   );
 }

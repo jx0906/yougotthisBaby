@@ -1,16 +1,16 @@
 meta {
-  name: userName match
+  name: babyName match
   type: http
   seq: 3
 }
 
 get {
-  url: https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblsO0cMQ3OyEkwSr?fields%5B%5D=userName&filterByFormula=REGEX_MATCH(%22Hello+World%22%2C+%22Hello.World%22)+%3D%3E+1
+  url: https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblsO0cMQ3OyEkwSr?fields%5B%5D=babyName&filterByFormula=REGEX_MATCH(%22Hello+World%22%2C+%22Hello.World%22)+%3D%3E+1
   body: none
   auth: none
 }
 
 query {
-  fields%5B%5D: userName
+  fields%5B%5D: babyName
   filterByFormula: REGEX_MATCH(%22Hello+World%22%2C+%22Hello.World%22)+%3D%3E+1
 }

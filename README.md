@@ -2,7 +2,7 @@
 
 One-stop platform for parents to track everything baby-related from baby's developmental growth to what they have (nursery, toys, etc).
 
-User stories (in Trello Board): https://trello.com/b/YbITqdl3/one-stop-baby-tracking-app-youve-got-this-baby
+Baby stories (in Trello Board): https://trello.com/b/YbITqdl3/one-stop-baby-tracking-app-youve-got-this-baby
 Wireframe: https://miro.com/app/board/uXjVNQJDDXY=/#tpicker-content
 
 Checklist for self:
@@ -14,7 +14,7 @@ Checklist for self:
   2 useStates
   2 react router routes
   1 lifting state, which is used to implement CRUD on the client side
-- Be styled such that the app looks and feels similar to apps we use on a daily basis - in other words, it should have a consistent and polished user interface.
+- Be styled such that the app looks and feels similar to apps we use on a daily basis - in other words, it should have a consistent and polished baby interface.
 - Be deployed online (Vercel).
 - Have full-CRUD single model operations somewhere within the app's features. For example, you can have functionality that Creates & Updates & Delete by implementing the ability to CRUD favourites.
 
