@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { BabyContext } from "../Home";
 
 function SignupForm () {
 
-    const babySignUpData, setBabySignUpData = setState{
+    const [babySignUpData, setBabySignUpData] = useState {
         babyName: "",
         babyName: "",
         babyDOB: 0,

@@ -5,16 +5,16 @@ meta {
 }
 
 get {
-  url: https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblsO0cMQ3OyEkwSr?fields%5B%5D=babyName&filterByFormula=REGEX_MATCH(%22Hello+World%22%2C+%22Hello.World%22)+%3D%3E+1
+  url: https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblsO0cMQ3OyEkwSr?fields%5B%5D=babyName&filterByFormula=REGEX_MATCH("Hello+World",+"Hello.World")=>+1
   body: none
   auth: bearer
 }
 
 query {
   fields%5B%5D: babyName
-  filterByFormula: REGEX_MATCH("Hello+World",+"Hello.World")+=>+1
+  filterByFormula: REGEX_MATCH("Hello+World",+"Hello.World")=>+1
 }
 
 auth:bearer {
-  token: patIefr5XHGrnjTal.ced0d2650e64835dc3f518858af97636f2d6498768d
+  token: patIefr5XHGrnjTal.ce642a147091cffd80d78258215e6695909498a75c9c7d5c91fbce5f3b3fc91f
 }
