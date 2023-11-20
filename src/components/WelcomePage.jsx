@@ -18,18 +18,35 @@ function WelcomePage() {
   return (
     <>
       {/* <button type="click" img="insert settings icon" onClick={() => <SettingsPage/>}> */}
+      <h1>Welcome!</h1>
       {/* <Notification /> */}
-      <h1>Welcome Page</h1>
-      <div className="Activity Log">
-        <h2>Last 5 Activity Logs for {babyName}</h2>
+      <div
+        className="Activity Log"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <h2 style={{ backgroundColor: "black", color: "yellow" }}>
+          Last 5 Activity Logs for {babyName}
+        </h2>
         {<ActivityOverview />}
       </div>
-      <h2>Log New Activity</h2>
+      <h2 style={{ backgroundColor: "black", color: "yellow" }}>
+        Log New Activity
+      </h2>
       <div className="activities">
-        <button id="Feed" value="Feed" type="click" onClick={activityOnClick}>
+        <button
+          style={{ borderColor: "black" }}
+          id="Feed"
+          value="Feed"
+          type="click"
+          onClick={activityOnClick}
+        >
           Feed
         </button>
         <button
+          style={{ borderColor: "black", marginLeft: "20px" }}
           id="Diaper"
           value="Diaper"
           type="click"
@@ -37,13 +54,26 @@ function WelcomePage() {
         >
           Diaper
         </button>
-        <button id="Sleep" value="Sleep" type="click" onClick={activityOnClick}>
+        <button
+          style={{ borderColor: "black", marginLeft: "20px" }}
+          id="Sleep"
+          value="Sleep"
+          type="click"
+          onClick={activityOnClick}
+        >
           Sleep
         </button>
-        <button id="Play" value="Play" type="click" onClick={activityOnClick}>
+        <button
+          style={{ borderColor: "black", marginLeft: "20px" }}
+          id="Play"
+          value="Play"
+          type="click"
+          onClick={activityOnClick}
+        >
           Play
         </button>
         <button
+          style={{ borderColor: "black", marginLeft: "20px" }}
           id="Doctor's"
           value="Doctor's"
           type="click"

@@ -93,7 +93,25 @@ function ActivityOverview() {
       },
     }));
 
-    console.log(activityData); //   output: (3) [{…}, {…}, {…}] = [
+    // Convert the dateTime string to a Date object
+    activityData.forEach((entry) => {
+      const date = new Date(entry.fields.dateTime);
+
+      // Format the date as a readable string according to the system locale
+      entry.fields.dateTime = date.toLocaleString();
+
+      // Format the date as a readable string in GMT+8
+      // entry.fields.dateTime = date.toLocaleString("en-US", {
+      //   timeZone: "Asia/Singapore", // Adjust for the specific time zone you need
+      //   year: "numeric",
+      //   month: "numeric",
+      //   day: "numeric",
+      //   hour: "numeric",
+      //   minute: "numeric",
+      //   second: "numeric",
+    });
+
+    console.log(activityData); //   output (dateTime before normalisation): (3) [{…}, {…}, {…}] = [
     //     {
     //         "id": "recw8F6jPp2e28SZx",
     //         "fields": {
@@ -137,7 +155,12 @@ function ActivityOverview() {
     <>
       {/* want to ensure that the return statement runs only after aData is defined so adding the conditional check before rendering */}
       {aData.length > 0 ? (
-        <table>
+        <table
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           {/* from: https://codepen.io/Alexander9111/pen/zYvEbML
   "state" variable below rep an array of objects, where each object represents a row of data in a table. with
   code below, we want to generate an HTML table with headers based on the keys of the first object and rows
