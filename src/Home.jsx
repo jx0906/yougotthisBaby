@@ -76,7 +76,7 @@ function Home() {
     } catch (error) {
       // console.error("Error fetching data:", error);
       setError(
-        `${babyName} not found. Please review your entry (case-sensitive)`
+        `${babyName} not found. Please review your entry (case-sensitive).`
       );
       return;
     }

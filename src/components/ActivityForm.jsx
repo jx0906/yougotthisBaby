@@ -2,47 +2,46 @@ import React, { useState, useContext } from "react";
 import { BabyContext, ActivityToLogContext } from "../App";
 
 function ActivityForm() {
-  const { ActivityToLogContext, setActivityToLogContext } =
+  const { activityToLogContext, setActivityToLogContext } =
     useContext(ActivityToLogContext);
-  const selectedActivity = { activitytoLog };
-  const [selActivity, setselActivity] = useState(selectedActivity);
+  // const selectedActivity = ActivitytoLogContext;
+  // const [selActivity, setselActivity] = useState(selectedActivity);
 
-  const userInput = {
-    fields: {
-      babyName: { babyName },
-      dateTime: "2023-08-09T07:49:00.000Z",
-      activity: "Feed",
-      duration: 600,
-      milkType: "Formula Milk",
-      milkVol: 100,
-    },
-  };
+  // const userInput = {
+  //   fields: {
+  //     babyName: { babyName },
+  //     dateTime: "2023-08-09T07:49:00.000Z",
+  //     activity: "Feed",
+  //     duration: 600,
+  //     milkType: "Formula Milk",
+  //     milkVol: 100,
+  //   },
+  // };
 
   function handleActivityChange(e) {
-    setActivitytoLog(e.target.value);
-    const newSelectedActivity = { activitytoLog };
-    setselActivity(newSelectedActivity);
+    setActivitytoLogContext(e.target.value);
   }
 
   return (
     <>
-      <form name="activityForm">
+      <form className="activityForm">
         {/* onSubmit={() => <CreateRecord />} */}
-        <div name="Activity Overview">
+        <div
+          className="Activity Overview"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <label>
             Date and Time:
-            <input
-              type="datetime-local"
-              name="dataTime"
-              value={dateTime}
-              required
-            />
+            <input type="datetime-local" name="dataTime" required />
           </label>
           <label for="activity">Activity:</label>
           <select
             id="activity"
             name="activity"
-            value={selActivity}
+            value={activityToLogContext}
             onChange={handleActivityChange}
           >
             <option value="Feed">Feed</option>
@@ -54,13 +53,14 @@ function ActivityForm() {
 
           <label>
             Duration
-            <input type="number" name="duration" value={duration} required />
+            <input type="number" name="duration" />
           </label>
         </div>
-
         <div
           name="diaper"
-          style={({ selActivity } = "Diaper" ? (display = "block") : "none")}
+          style={{
+            display: activityToLogContext === "Diaper" ? "block" : "none",
+          }}
         >
           <label for="diaperType">Diaper Type:</label>
           <select
@@ -75,10 +75,11 @@ function ActivityForm() {
             <option value="Both">Both</option>
           </select>
         </div>
-
         <div
           name="Sleep"
-          style={({ selActivity } = "Sleep" ? (display = "block") : "none")}
+          style={{
+            display: activityToLogContext === "Sleep" ? "block" : "none",
+          }}
         >
           <label for="sleepType">Sleep Type:</label>
           <select
@@ -92,10 +93,11 @@ function ActivityForm() {
             <option value="Sleep">Night</option>
           </select>
         </div>
-
         <div
           name="Feed"
-          style={({ selActivity } = "Feed" ? (display = "block") : "none")}
+          style={{
+            display: activityToLogContext === "Feed" ? "block" : "none",
+          }}
         >
           <label for="milkType">Milk Type:</label>
           <select
@@ -111,23 +113,25 @@ function ActivityForm() {
           </select>
           <label>
             Milk volume:
-            <input type="number" name="milkVol" value={milkVol} required />
+            <input type="number" name="milkVol" required />
           </label>
         </div>
-
         <div
           name="Play"
-          style={({ selActivity } = "Play" ? (display = "block") : "none")}
+          style={{
+            display: activityToLogContext === "Play" ? "block" : "none",
+          }}
         >
           <label>
             Play type:
-            <input type="text" name="playType" value={playType} required />
+            <input type="text" name="playType" required />
           </label>
         </div>
-
         <div
           name="Doctor's"
-          style={({ selActivity } = "Doctor's" ? (display = "block") : "none")}
+          style={{
+            display: activityToLogContext === "Doctor's" ? "block" : "none",
+          }}
         >
           <label for="visitDocType">Visit Doc Type:</label>
           <select
@@ -142,17 +146,26 @@ function ActivityForm() {
           </select>
           <label>
             Name of Doc:
-            <input type="text" name="docName" value={docName} />
+            <input type="text" name="docName" />
           </label>
           <label>
             Medicine:
-            <input type="text" name="medicine" value={medicine} />
+            <input type="text" name="medicine" />
           </label>
           <label>
             Diagnosis:
-            <input type="text" name="diagnosis" value={diagnosis} />
+            <input type="text" name="diagnosis" />
           </label>
         </div>
+        <button
+          style={{
+            marginTop: 20,
+            backgroundColor: "grey",
+            color: "white",
+          }}
+        >
+          Submit
+        </button>
       </form>
     </>
   );
