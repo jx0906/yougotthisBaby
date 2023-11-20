@@ -1,26 +1,28 @@
 import { useContext } from "react";
-import { BabyContext } from "../Home";
+import { BabyContext } from "../App";
 
-function createRecord({ babyName, babyProfile }) {
-  const babyProfile = useContext(BabyContext);
+function CreateRecord({ userInput }) {
+  const { babyContext, setBabyContext } = useContext(BabyContext);
+  const babyName = babyContext.babyDetails.babyName;
 
-  async function createActivityRecord() {
-    evt.preventDefault();
-    const baseURL =
-      "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps";
-
-    const response = await fetch(`${baseURL}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer patIefr5XHGrnjTal.ce642a147091cffd80d78258215e6695909498a75c9c7d5c91fbce5f3b3fc91f",
-      },
-      body: JSON.stringify(payload),
-    });
+  async function writeActivitytoDB() {
+    const response = await fetch(
+      "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer patIefr5XHGrnjTal.ce642a147091cffd80d78258215e6695909498a75c9c7d5c91fbce5f3b3fc91f",
+        },
+        body: JSON.stringify(userInput),
+      }
+    );
     const jsonObj = await response.json();
-    addHoliday(jsonObj);
+    // addHoliday(jsonObj);
   }
 
-  createHoliday(payload);
+  writeActivitytoDB(userInput);
 }
+
+export default CreateRecord;

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { BabyContext } from "../Home";
+import { BabyContext } from "../App";
 
 function Notification() {
   const babyProfile = useContext(BabyContext);

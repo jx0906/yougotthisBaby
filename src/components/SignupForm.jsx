@@ -68,5 +68,5 @@ function SignupForm () {
     );
   }
   
-  export default NewForm;
+  export default SignupForm;
   
