@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import { BabyContext } from "../App";
+import React, { useState, useContext } from "react";
+import { BabyContext, ActivityToLogContext } from "../App";
 
-function ActivityForm({ activitytoLog }) {
+function ActivityForm() {
+  const { ActivityToLogContext, setActivityToLogContext } =
+    useContext(ActivityToLogContext);
   const selectedActivity = { activitytoLog };
   const [selActivity, setselActivity] = useState(selectedActivity);
 
@@ -25,7 +26,8 @@ function ActivityForm({ activitytoLog }) {
 
   return (
     <>
-      <form name="activityForm" onSubmit={() => <CreateRecord />}>
+      <form name="activityForm">
+        {/* onSubmit={() => <CreateRecord />} */}
         <div name="Activity Overview">
           <label>
             Date and Time:
@@ -36,7 +38,6 @@ function ActivityForm({ activitytoLog }) {
               required
             />
           </label>
-
           <label for="activity">Activity:</label>
           <select
             id="activity"
@@ -59,7 +60,7 @@ function ActivityForm({ activitytoLog }) {
 
         <div
           name="diaper"
-          style={({ selactivity } = "Diaper" ? (display = "block") : "none")}
+          style={({ selActivity } = "Diaper" ? (display = "block") : "none")}
         >
           <label for="diaperType">Diaper Type:</label>
           <select
@@ -77,7 +78,7 @@ function ActivityForm({ activitytoLog }) {
 
         <div
           name="Sleep"
-          style={({ selactivity } = "Sleep" ? (display = "block") : "none")}
+          style={({ selActivity } = "Sleep" ? (display = "block") : "none")}
         >
           <label for="sleepType">Sleep Type:</label>
           <select
@@ -94,7 +95,7 @@ function ActivityForm({ activitytoLog }) {
 
         <div
           name="Feed"
-          style={({ selactivity } = "Feed" ? (display = "block") : "none")}
+          style={({ selActivity } = "Feed" ? (display = "block") : "none")}
         >
           <label for="milkType">Milk Type:</label>
           <select
@@ -116,7 +117,7 @@ function ActivityForm({ activitytoLog }) {
 
         <div
           name="Play"
-          style={({ selactivity } = "Play" ? (display = "block") : "none")}
+          style={({ selActivity } = "Play" ? (display = "block") : "none")}
         >
           <label>
             Play type:
@@ -126,7 +127,7 @@ function ActivityForm({ activitytoLog }) {
 
         <div
           name="Doctor's"
-          style={({ selactivity } = "Doctor's" ? (display = "block") : "none")}
+          style={({ selActivity } = "Doctor's" ? (display = "block") : "none")}
         >
           <label for="visitDocType">Visit Doc Type:</label>
           <select

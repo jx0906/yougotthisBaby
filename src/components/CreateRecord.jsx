@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { BabyContext } from "../App";
+import { BabyContext, ActivityToLogContext } from "../App";
 
 function CreateRecord({ userInput }) {
-  const { babyContext, setBabyContext } = useContext(BabyContext);
-  const babyName = babyContext.babyDetails.babyName;
+  const { babyContext } = useContext(BabyContext);
+  const babyName = babyContext.babyName;
 
   async function writeActivitytoDB() {
     const response = await fetch(

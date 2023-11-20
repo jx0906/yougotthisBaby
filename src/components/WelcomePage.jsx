@@ -1,17 +1,18 @@
 import { useState, useContext } from "react";
 import { Button } from "@chakra-ui/button";
 import ActivityOverview from "./ActivityOverview";
-import { BabyContext } from "../App";
+import { BabyContext, ActivityToLogContext } from "../App";
 import { useNavigate } from "react-router";
 
 function WelcomePage() {
   const navigate = useNavigate();
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
-  // console.log(babyName);
+  const { activityToLogContext, setActivityToLogContext } =
+    useContext(ActivityToLogContext);
 
   function activityOnClick(evt) {
-    setActivitytoLog(evt.target.value);
+    setActivityToLogContext(evt.target.value);
     navigate("/welcome/logactivity");
   }
 
