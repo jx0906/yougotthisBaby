@@ -2,8 +2,11 @@ import { useContext } from "react";
 import { BabyContext, ActivityToLogContext } from "../App";
 
 function CreateRecord({ userInput }) {
-  const { babyContext } = useContext(BabyContext);
-  const babyName = babyContext.babyName;
+  const { babyContext, setBabyContext } = useContext(BabyContext);
+  const { activityToLogContext, setActivityToLogContext } =
+    useContext(ActivityToLogContext);
+
+  console.log(userInput);
 
   async function writeActivitytoDB() {
     const response = await fetch(
@@ -18,8 +21,8 @@ function CreateRecord({ userInput }) {
         body: JSON.stringify(userInput),
       }
     );
-    const jsonObj = await response.json();
-    // addHoliday(jsonObj);
+    const newBabyData = await response.json();
+    setBabyContext(newBabyData);
   }
 
   writeActivitytoDB(userInput);

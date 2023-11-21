@@ -29,7 +29,7 @@ function ActivityOverview() {
     //   return;
     // } else {
     const fetchedActivityLog = await res.json();
-    console.log(JSON.stringify(fetchedActivityLog)); // o/p: {"records": [
+    console.log("fetchedActivityLog = " + JSON.stringify(fetchedActivityLog)); // o/p: {"records": [
     //   {
     //     "id": "recw8F6jPp2e28SZx",
     //     "createdTime": "2023-11-18T14:59:07.000Z",
@@ -66,7 +66,7 @@ function ActivityOverview() {
     // ]
 
     const allActivityData = fetchedActivityLog.records;
-    console.log(JSON.stringify(allActivityData)); //output (sample)
+    console.log("allActivityData = " + JSON.stringify(allActivityData)); //output (sample)
     // {
     //   "id": "recw8F6jPp2e28SZx",
     //   "createdTime": "2023-11-18T14:59:07.000Z",
@@ -111,7 +111,7 @@ function ActivityOverview() {
       //   second: "numeric",
     });
 
-    console.log(activityData); //   output (dateTime before normalisation): (3) [{…}, {…}, {…}] = [
+    console.log("activityData = " + activityData); //   output (dateTime before normalisation): (3) [{…}, {…}, {…}] = [
     //     {
     //         "id": "recw8F6jPp2e28SZx",
     //         "fields": {
@@ -138,7 +138,7 @@ function ActivityOverview() {
     //     }
     // ]
 
-    console.log(JSON.stringify(activityData));
+    console.log("activityData = " + JSON.stringify(activityData));
     setAData(activityData);
   };
 
@@ -177,6 +177,7 @@ function ActivityOverview() {
             {Object.keys(aData[0].fields).map((key) => (
               <th key={key}>{key}</th>
             ))}
+            <th>edit</th>
           </tr>
           {/* Data Rows - use state.map((item) => ...) to iterate over each item in the state array. Inside the
         mapping function, Object.values(item) is used to get an array of values for each item. It then maps
@@ -187,6 +188,10 @@ function ActivityOverview() {
               {Object.values(record.fields).map((val, index) => (
                 <td key={index}>{val}</td>
               ))}
+              <td>
+                <button type="click">X</button>
+                {/* need to put in handleEdit functions */}
+              </td>
             </tr>
           ))}
         </table>

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 
 import App, { BabyContext } from "./App.jsx";
 import QuoteDay from "./components/QuoteDay";
-import WelcomePage from "./components/WelcomePage";
 
 function Home() {
   const [babyName, setBabyName] = useState("");
@@ -67,7 +66,6 @@ function Home() {
         // setBabyDetails(babyDataS);
 
         setBabyContext(babyData);
-        console.log(babyContext);
         // console.log(`babyDetails=${babyProfile}`); // output [object object], same even if i const babyDataS = JSON.stringify(babyData) and setBabyProfile(babyDataS);
         // console.log(babyDetails); // output {} with properties, no value; same even if i const babyDataS = JSON.stringify(babyData) and setBabyProfile(babyDataS);
         // console.log(JSON.stringify(babyDetails)); // output {}, same even if i const babyDataS = JSON.stringify(babyData) and setBabyProfile(babyDataS);
