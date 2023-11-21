@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 
-import ActivityOverview from "./ActivityOverview";
 import { BabyContext, ActivityToLogContext } from "../App";
+import ActivityOverview from "./ActivityOverview";
+import MilestoneNotification from "./MilestoneNotification";
 
 function WelcomePage() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function WelcomePage() {
     <>
       {/* <button type="click" img="insert settings icon" onClick={() => <SettingsPage/>}> */}
       <h1>Welcome!</h1>
-      {/* <Notification /> */}
+      <MilestoneNotification />
       <div
         className="Activity Log"
         style={{
