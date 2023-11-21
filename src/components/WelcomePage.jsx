@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { Button } from "@chakra-ui/button";
+import { useNavigate } from "react-router";
+
 import ActivityOverview from "./ActivityOverview";
 import { BabyContext, ActivityToLogContext } from "../App";
-import { useNavigate } from "react-router";
 
 function WelcomePage() {
   const navigate = useNavigate();

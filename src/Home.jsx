@@ -1,5 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router";
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from "@chakra-ui/react";
 
 import App, { BabyContext } from "./App.jsx";
 import QuoteDay from "./components/QuoteDay";
@@ -120,7 +126,13 @@ function Home() {
       Sign up
     </button> */}
         </form>
-        {error ? <label style={{ color: "red" }}>{error}</label> : null}
+        {error ? (
+          <Alert status="warning">
+            <AlertIcon />
+            Baby name: {babyName} not found. Please review your entry
+            (case-sensitive).
+          </Alert>
+        ) : null}
       </div>
     </>
   );
