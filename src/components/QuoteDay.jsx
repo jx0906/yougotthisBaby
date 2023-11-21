@@ -38,12 +38,12 @@ function QuoteDay() {
     <div
       className="quoteOTDay"
       style={{
-        marginBottom: 50,
+        marginBottom: 30,
         color: "black",
       }}
     >
       <h4>{quoteData.content}</h4>
-      <h6>- {quoteData.author}</h6>
+      <h5>- {quoteData.author}</h5>
     </div>
   );
 }

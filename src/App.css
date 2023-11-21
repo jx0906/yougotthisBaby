@@ -4,15 +4,12 @@
     padding: 2rem;
     text-align: center;
   }
-  
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+
+  body{
+  background: url("https://wallpaperaccess.com/full/5260178.jpg") no-repeat center;
+  background-size: 150%;
+  margin: 0 auto;
+}
   
   @media (prefers-reduced-motion: no-preference) {
     a:nth-of-type(2) .logo {

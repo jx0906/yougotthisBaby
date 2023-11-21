@@ -104,12 +104,14 @@ function Home() {
             onChange={(evt) => {
               setBabyName(evt.target.value);
             }}
+            style={{ fontSize: "20px" }}
           />
           <button
             style={{
               marginTop: 20,
               backgroundColor: "grey",
               color: "white",
+              fontSize: "15px",
             }}
           >
             Let's go!
