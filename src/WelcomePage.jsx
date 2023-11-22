@@ -76,7 +76,7 @@ function WelcomePage() {
         // console.log(babyDetails); // output {} with properties, no value; same even if i const babyDataS = JSON.stringify(babyData) and setBabyProfile(babyDataS);
         // console.log(JSON.stringify(babyDetails)); // output {}, same even if i const babyDataS = JSON.stringify(babyData) and setBabyProfile(babyDataS);
       }
-      navigate("/welcome", { replace: true });
+      navigate("/home", { replace: true });
     } catch (error) {
       // console.error("Error fetching data:", error);
       setError(
