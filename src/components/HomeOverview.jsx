@@ -5,13 +5,6 @@ import { BabyContext, ActivityToLogContext } from "../App";
 import ActivityHistory from "./ActivityHistory";
 import MilestoneNotification from "./MilestoneNotification";
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from "@chakra-ui/react";
-
 function HomeOverview() {
   const navigate = useNavigate();
   const { babyContext } = useContext(BabyContext);
@@ -41,7 +34,7 @@ function HomeOverview() {
     <>
       {/* <button type="click" img="insert settings icon" onClick={() => <SettingsPage/>}> */}
 
-      <h1>Welcome!</h1>
+      <h3 style={{ margin: "0", padding: "0.2em" }}>Welcome back!</h3>
       <MilestoneNotification />
       <div
         className="Activity Log"
@@ -51,7 +44,7 @@ function HomeOverview() {
         }}
       >
         <h2 style={{ backgroundColor: "black", color: "yellow" }}>
-          Last 5 Activity Logs for {babyName}
+          Last 5 Activity Logs
         </h2>
         {<ActivityHistory />}
       </div>

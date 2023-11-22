@@ -8,8 +8,8 @@ function MileStoneNotification() {
 
   return (
     <div>
-      <p>
-        {babyName} is {babyAge} old!
+      <p style={{ fontSize: "30px", margin: "0", padding: "0em" }}>
+        {babyName} is {babyAge} old today!
       </p>
     </div>
   );

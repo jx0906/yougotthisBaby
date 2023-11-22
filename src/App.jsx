@@ -5,6 +5,7 @@ import "./App.css";
 import WelcomePage from "./WelcomePage.jsx";
 import HomeOverview from "./components/HomeOverview.jsx";
 import ActivityForm from "./components/ActivityForm";
+import NavigationSignpost from "./components/Navigation";
 
 // BabyContext expected to hold all the records (from my API or any user action) for the specified baby
 const BabyContext = createContext();
@@ -27,6 +28,7 @@ function App() {
       <ActivityToLogContext.Provider
         value={{ activityToLogContext, setActivityToLogContext }}
       >
+        <NavigationSignpost />
         <Routes>
           {/* Use the Navigate component to navigate to the WelcomePage
         <Route path="/welcome" element={<Navigate to="/welcome" replace />} 

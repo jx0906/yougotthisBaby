@@ -41,8 +41,8 @@ function QuoteDay() {
         color: "black",
       }}
     >
-      <h4>{quoteData.content}</h4>
-      <h5>- {quoteData.author}</h5>
+      <h4 style={{ margin: "0", padding: "0.2em" }}>{quoteData.content}</h4>
+      <h5 style={{ margin: "0", padding: "0.2em" }}>- {quoteData.author}</h5>
     </div>
   );
 }

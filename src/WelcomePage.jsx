@@ -95,14 +95,16 @@ function WelcomePage() {
     <>
       <div>
         <QuoteDay />
-        <p style={{ backgroundColor: "black" }}>
-          <h6 style={{ color: "white", margin: "0.5cm" }}>
-            A tracking app developed for parents by parents
-          </h6>
-          <h1 style={{ color: "yellow" }}>YOU'VE GOT THIS, BABY!</h1>
-        </p>
+        <div style={{ backgroundColor: "black", margin: "0", padding: "0" }}>
+          <h5 style={{ color: "white", margin: "0", padding: "0.2em" }}>
+            A tracking app developed for parents by parents;
+          </h5>
+          <h1 style={{ color: "yellow", margin: "0", padding: "0.2em" }}>
+            YOU'VE GOT THIS, BABY!
+          </h1>
+        </div>
         <form
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{ display: "flex", flexDirection: "column", padding: "0.5em" }}
           name="login"
           onSubmit={handleLoginSubmit}
         >

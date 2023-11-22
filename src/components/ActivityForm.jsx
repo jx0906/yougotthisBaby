@@ -112,7 +112,7 @@ function ActivityForm() {
 
           <label>
             Duration:
-            <input type="number" name="duration" min="0" />
+            <input type="number" name="duration" min="0:00" />
           </label>
         </div>
 
