@@ -8,9 +8,9 @@ import {
 } from "@chakra-ui/react";
 
 import App, { BabyContext } from "./App.jsx";
-import QuoteDay from "./components/QuoteDay";
+import QuoteDay from "./components/QuoteDay.jsx";
 
-function Home() {
+function WelcomePage() {
   const [babyName, setBabyName] = useState("");
   const { babyContext, setBabyContext } = useContext(BabyContext);
   // The use of curly brackets above is to destructure the BabyContext obj. This provides a way to extract
@@ -80,7 +80,7 @@ function Home() {
     } catch (error) {
       // console.error("Error fetching data:", error);
       setError(
-        `${babyName} not found. Please review your entry (case-sensitive).`
+        `Baby name: "${babyName}" not found. Please review your entry (case-sensitive).`
       );
       return;
     }
@@ -95,9 +95,12 @@ function Home() {
     <>
       <div>
         <QuoteDay />
-        <h1 style={{ backgroundColor: "black", color: "yellow" }}>
-          YOU'VE GOT THIS, BABY!
-        </h1>
+        <p style={{ backgroundColor: "black" }}>
+          <h6 style={{ color: "white", margin: "0.5cm" }}>
+            A tracking app developed for parents by parents
+          </h6>
+          <h1 style={{ color: "yellow" }}>YOU'VE GOT THIS, BABY!</h1>
+        </p>
         <form
           style={{ display: "flex", flexDirection: "column" }}
           name="login"
@@ -127,10 +130,20 @@ function Home() {
     </button> */}
         </form>
         {error ? (
-          <Alert status="warning">
-            <AlertIcon />
-            Baby name: {babyName} not found. Please review your entry
-            (case-sensitive).
+          <Alert
+            status="warning"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            height="200px"
+          >
+            <AlertIcon boxSize="40px" mr={0} size="xs" />
+            <AlertTitle mt={4} mb={1} fontSize="md">
+              OOPS!
+            </AlertTitle>
+            {error}
           </Alert>
         ) : null}
       </div>
@@ -138,4 +151,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default WelcomePage;

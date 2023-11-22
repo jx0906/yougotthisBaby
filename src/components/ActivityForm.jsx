@@ -56,7 +56,18 @@ function ActivityForm() {
 
   return (
     <>
-      <form className="activityForm" onSubmit={handleSubmitNewRecord}>
+      <form
+        className="activityForm"
+        onSubmit={handleSubmitNewRecord}
+        style={{
+          minHeight: "600px",
+          minWidth: "400px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center", // Center horizontally
+          justifyContent: "center", // Center vertically
+        }}
+      >
         <div
           className="Activity Overview"
           style={{
@@ -107,7 +118,13 @@ function ActivityForm() {
 
         {/* using conditional rendering instead of ternary operator as we have >2 options */}
         {activityToLogContext === "Diaper" && (
-          <div name="Diaper">
+          <div
+            name="Diaper"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <label for="diaperType">Diaper Type: </label>
             <select
               id="diaperType"
@@ -124,7 +141,13 @@ function ActivityForm() {
         )}
 
         {activityToLogContext === "Sleep" && (
-          <div name="Sleep">
+          <div
+            name="Sleep"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <label for="sleepType">Sleep Type:</label>
             <select
               id="sleepType"
@@ -140,7 +163,13 @@ function ActivityForm() {
         )}
 
         {activityToLogContext === "Feed" && (
-          <div name="Feed">
+          <div
+            name="Feed"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <label for="milkType">Milk Type:</label>
             <select
               id="milkType"
@@ -153,6 +182,7 @@ function ActivityForm() {
               <option value="Formula">Formula</option>
               <option value="Mix">Mix</option>
             </select>
+
             <label>
               Milk volume:
               <input type="number" name="milkVol" />
@@ -161,7 +191,13 @@ function ActivityForm() {
         )}
 
         {activityToLogContext === "Play" && (
-          <div name="Play">
+          <div
+            name="Play"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <label>
               Play type:
               <input type="text" name="playType" />
@@ -170,7 +206,13 @@ function ActivityForm() {
         )}
 
         {activityToLogContext === "Doctor's" && (
-          <div name="Doctor's">
+          <div
+            name="Doctor's"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <label for="visitDocType">Visit Doc Type:</label>
             <select
               id="visitDocType"
@@ -182,14 +224,17 @@ function ActivityForm() {
               <option value="Check-up">Check-up</option>
               <option value="Illness">Illness</option>
             </select>
+
             <label>
               Name of Doc:
               <input type="text" name="docName" />
             </label>
+
             <label>
               Medicine:
               <input type="text" name="medicine" />
             </label>
+
             <label>
               Diagnosis:
               <input type="text" name="diagnosis" />
@@ -202,6 +247,7 @@ function ActivityForm() {
             marginTop: 20,
             backgroundColor: "grey",
             color: "white",
+            fontSize: "15px",
           }}
         >
           Submit

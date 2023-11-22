@@ -10,7 +10,7 @@ import { GiUnderwearShorts, GiNightSleep } from "react-icons/gi";
           isRound={true}
           variant="solid"
           colorScheme="teal"
-          size="lg"
+          size="lg" // xs, sm, md, or lg
           aria-label="Feed" //for screen readers to give it meaning
           fontSize="20px"
           name="Feed"

@@ -2,10 +2,17 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 
 import { BabyContext, ActivityToLogContext } from "../App";
-import ActivityOverview from "./ActivityOverview";
+import ActivityHistory from "./ActivityHistory";
 import MilestoneNotification from "./MilestoneNotification";
 
-function WelcomePage() {
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+} from "@chakra-ui/react";
+
+function HomeOverview() {
   const navigate = useNavigate();
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
@@ -33,6 +40,7 @@ function WelcomePage() {
   return (
     <>
       {/* <button type="click" img="insert settings icon" onClick={() => <SettingsPage/>}> */}
+
       <h1>Welcome!</h1>
       <MilestoneNotification />
       <div
@@ -45,7 +53,7 @@ function WelcomePage() {
         <h2 style={{ backgroundColor: "black", color: "yellow" }}>
           Last 5 Activity Logs for {babyName}
         </h2>
-        {<ActivityOverview />}
+        {<ActivityHistory />}
       </div>
       <h2 style={{ backgroundColor: "black", color: "yellow" }}>
         Log New Activity
@@ -101,4 +109,4 @@ function WelcomePage() {
   );
 }
 
-export default WelcomePage;
+export default HomeOverview;

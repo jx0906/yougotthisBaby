@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { BabyContext } from "../App";
 
-function ActivityOverview() {
+function ActivityHistory() {
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
   //setting aData as array because API will return the data in an array of obj[{}] - see line 32
@@ -202,4 +202,4 @@ function ActivityOverview() {
   );
 }
 
-export default ActivityOverview;
+export default ActivityHistory;

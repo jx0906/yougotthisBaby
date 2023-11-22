@@ -2,8 +2,8 @@ import React, { useState, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import Home from "./Home.jsx";
-import WelcomePage from "./components/WelcomePage";
+import WelcomePage from "./WelcomePage.jsx";
+import HomeOverview from "./components/HomeOverview.jsx";
 import ActivityForm from "./components/ActivityForm";
 
 // BabyContext expected to hold all the records (from my API or any user action) for the specified baby
@@ -36,11 +36,11 @@ function App() {
         "/welcome" route when the handleLoginSubmit function is executed. Additionally, the replace prop is
         used to replace the current entry in the history stack, preventing the user from going back to the
         login page using the browser's back button. */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<WelcomePage />} />
           {/* The nested <Route>s inherit and add to the parent route. So the welcome path is combined with
 the parent to become /welcome. */}
-          <Route path="welcome" element={<WelcomePage />} />
-          <Route path="welcome/logactivity" element={<ActivityForm />} />
+          <Route path="home" element={<HomeOverview />} />
+          <Route path="home/logactivity" element={<ActivityForm />} />
           {/* <Route path="signup" element={<SignUpForm />} /> */}
         </Routes>
       </ActivityToLogContext.Provider>
