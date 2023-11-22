@@ -34,7 +34,7 @@ function HomeOverview() {
     // setActivityToLogContext and initiating a navigation, the component will unmount, and the updated value won't be logged immediately so I need to check the updated value
     // in the component where ActivityToLogContext is consumed, ie, the component rendered at the /welcome/logactivity route - ActivityForm
 
-    navigate("/welcome/logactivity");
+    navigate("/home/logactivity");
   }
 
   return (
