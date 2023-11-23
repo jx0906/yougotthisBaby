@@ -1,4 +1,4 @@
-function DevMilestone() {
+function DevMilestone({ devMilestone, updateDevMilestone }) {
   return <p>work in progress</p>;
 }
 

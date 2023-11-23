@@ -16,9 +16,17 @@ const ActivityToLogContext = createContext({
 });
 
 function App() {
+  //using useState to update the babyContext values so child components can call on it
   const [activityToLogContext, setActivityToLogContext] = useState("");
   const [babyContext, setBabyContext] = useState({});
-  //using useState to update the babyContext values so child components can call on it
+  //prop lifting with function to update the state values which I will pass to child components
+  const [devMilestone, setDevMilestone] = useState({
+    checklistQues: null,
+    recommendedVac: null,
+  });
+  const updateDevMilestone = (newDevChecklist) => {
+    setDevMilestone(newDevChecklist);
+  };
 
   return (
     <BabyContext.Provider value={{ babyContext, setBabyContext }}>
@@ -44,7 +52,15 @@ function App() {
 the parent to become /welcome. */}
           <Route path="home" element={<HomeOverview />} />
           <Route path="home/logactivity" element={<ActivityForm />} />
-          <Route path="home/devmilestone" element={<DevMilestone />} />
+          <Route
+            path="home/devmilestone"
+            element={
+              <DevMilestone
+                devMilestone={devMilestone}
+                updateDevMilestone={updateDevMilestone}
+              />
+            }
+          />
           {/* <Route path="signup" element={<SignUpForm />} /> */}
         </Routes>
       </ActivityToLogContext.Provider>

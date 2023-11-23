@@ -8,8 +8,6 @@ function MileStoneNotification() {
   const babyName = babyContext.babyName;
   const babyAge = babyContext.babyAge;
   const [checklist, setChecklist] = useState({});
-  const [statusInput, setStatusInput] = useState("not yet");
-  const [stocktake, setStocktake] = useState({});
 
   const fetchMilestoneChecklist = async () => {
     // console.log(babyAge);
@@ -48,18 +46,31 @@ function MileStoneNotification() {
         console.log("nothing in the checklist to be notified of");
         return;
       } else {
+        // using map to create a new array (milestoneChecklistbyAge.entry) by extracting the "fields"
+        // object from each record in fetchedMilestoneChecklistbyAge.records. This will ensure that all
+        // the field info would be included in the resulting array.
         const milestoneChecklistbyAge = {
-          ...fetchedMilestoneChecklistbyAge.records[0].fields,
+          entry: fetchedMilestoneChecklistbyAge.records.map(
+            (record) => record.fields
+          ),
         };
-
         console.log(JSON.stringify(milestoneChecklistbyAge));
         // output = {
-        //   "ageRange": "6 - 12 months",
-        //   "event": "Childhood Dev Screening",
-        //   "age": "6 months",
-        //   "checklistQues": "Your child will try to get a toy that he enjoys when it is out of reach by stretching his arms or body. (Works for a toy out of reach)",
-        //   "devCategory": "Personal Social"
-        // }
+        //     "records": [
+        //       {
+        //         "ageRange": "6 - 12 months",
+        //         "event": "Childhood Dev Screening",
+        //         "age": "6 months",
+        //         "checklistQues": "Your child will try to get a toy that he enjoys when it is out of reach by stretching his arms or body. (Works for a toy out of reach)",
+        //         "devCategory": "Personal Social"
+        //       },
+        //       {
+        //         "ageRange": "6 - 12 months",
+        //         "event": "Childhood Dev Screening",
+        //         "age": "6 months",
+        //         "checklistQues": "Your child uses the word \"Papa\" and \"Mama\" specifically. (Says Papa/Mama specifically)",
+        //         "devCategory": "Language"
+        //       }]}
 
         setChecklist(milestoneChecklistbyAge);
       }
@@ -79,16 +90,17 @@ function MileStoneNotification() {
         {babyName} is {babyAge} old today!
       </div>
       {/* conditional rendering to vary notification output based on checklist data */}
-      {(checklist.checklistQues !== null &&
-        checklist.recommendedVac !== null) ||
-        (checklist == undefined && (
+      {checklist.checklistQues !== null &&
+        checklist.recommendedVac !== null && (
           <div>
             At {babyAge} old, you may wish to schedule {babyName} for
             immunisation and/or do a stocktake of the Childhood Developmental
-            Screening checklist. Find out more
-            <Link to="/devmilestone"> here</Link>!
+            Screening (CDS) checklist. Do remember to schedule the immunisation
+            soon if you haven't done so and click
+            <Link to="/devmilestone"> here</Link> to review the CDS checklist
+            now!
           </div>
-        ))}
+        )}
       {checklist.checklistQues === null &&
         checklist.recommendedVac !== null && (
           <div>
@@ -101,7 +113,7 @@ function MileStoneNotification() {
         checklist.recommendedVac === null && (
           <div>
             At {babyAge} old, you may wish to do a stocktake of the Childhood
-            Developmental Screening checklist. Click
+            Developmental Screening (CDS) checklist. Click
             <Link to="/devmilestone"> here</Link> to do it now!
           </div>
         )}
