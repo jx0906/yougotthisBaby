@@ -79,17 +79,16 @@ function MileStoneNotification() {
         {babyName} is {babyAge} old today!
       </div>
       {/* conditional rendering to vary notification output based on checklist data */}
-      {(checklist.checklistQues !== null ||
-        checklist.checklistQues !== undefined) &&
-        (checklist.recommendedVac !== null ||
-          checklist.recommendedVac !== undefined) && (
+      {(checklist.checklistQues !== null &&
+        checklist.recommendedVac !== null) ||
+        (checklist == undefined && (
           <div>
             At {babyAge} old, you may wish to schedule {babyName} for
             immunisation and/or do a stocktake of the Childhood Developmental
             Screening checklist. Find out more
             <Link to="/devmilestone"> here</Link>!
           </div>
-        )}
+        ))}
       {checklist.checklistQues === null &&
         checklist.recommendedVac !== null && (
           <div>
