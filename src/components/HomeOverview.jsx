@@ -33,9 +33,8 @@ function HomeOverview() {
   return (
     <>
       {/* <button type="click" img="insert settings icon" onClick={() => <SettingsPage/>}> */}
-
       <h3 style={{ margin: "0", padding: "0.2em" }}>Welcome back!</h3>
-      {/* <MilestoneNotification /> */}
+      <MilestoneNotification />
       <div
         className="Activity Log"
         style={{

@@ -6,6 +6,7 @@ import WelcomePage from "./WelcomePage.jsx";
 import HomeOverview from "./components/HomeOverview.jsx";
 import ActivityForm from "./components/ActivityForm";
 import NavigationSignpost from "./components/Navigation";
+import DevMilestone from "./components/DevMilestone";
 
 // BabyContext expected to hold all the records (from my API or any user action) for the specified baby
 const BabyContext = createContext();
@@ -43,6 +44,7 @@ function App() {
 the parent to become /welcome. */}
           <Route path="home" element={<HomeOverview />} />
           <Route path="home/logactivity" element={<ActivityForm />} />
+          <Route path="home/devmilestone" element={<DevMilestone />} />
           {/* <Route path="signup" element={<SignUpForm />} /> */}
         </Routes>
       </ActivityToLogContext.Provider>

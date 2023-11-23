@@ -27,7 +27,7 @@ function ActivityForm() {
             ...data,
             // used the spread operator to include all properties from the data object into the fields property of
             // the activityData object. The duration property is handled separately, converting it to an integer as needed.
-            duration: parseInt(data.duration) || "0",
+            duration: parseInt(data.duration) || "0:00",
           },
         },
       ],
@@ -75,7 +75,10 @@ function ActivityForm() {
             flexDirection: "column",
           }}
         >
-          <label for="activity">Activity: </label>
+          {/* The for attribute in HTML is used to associate a <label> element with a form control, indicating which form element the label is labeling.
+          However, in JSX, for is a reserved keyword, and it can't be used as an attribute name because it might conflict with the JavaScript for loop. 
+          so we use htmlFor instead in JSX. */}
+          <label htmlFor="activity">Activity: </label>
           <select
             id="activity"
             name="activity"
@@ -112,7 +115,12 @@ function ActivityForm() {
 
           <label>
             Duration:
-            <input type="number" name="duration" min="0:00" />
+            <input
+              type="string"
+              name="duration"
+              min="0:00"
+              defaultValue="enter in hh:mm"
+            />
           </label>
         </div>
 
@@ -125,7 +133,7 @@ function ActivityForm() {
               flexDirection: "column",
             }}
           >
-            <label for="diaperType">Diaper Type: </label>
+            <label htmlFor="diaperType">Diaper Type: </label>
             <select
               id="diaperType"
               name="diaperType"
@@ -148,7 +156,7 @@ function ActivityForm() {
               flexDirection: "column",
             }}
           >
-            <label for="sleepType">Sleep Type:</label>
+            <label htmlFor="sleepType">Sleep Type:</label>
             <select
               id="sleepType"
               name="sleepType"
@@ -157,7 +165,7 @@ function ActivityForm() {
               }}
             >
               <option value="Nap">Nap</option>
-              <option value="Sleep">Night</option>
+              <option value="Night">Night</option>
             </select>
           </div>
         )}
@@ -170,7 +178,7 @@ function ActivityForm() {
               flexDirection: "column",
             }}
           >
-            <label for="milkType">Milk Type:</label>
+            <label htmlFor="milkType">Milk Type:</label>
             <select
               id="milkType"
               name="milkType"
@@ -213,7 +221,7 @@ function ActivityForm() {
               flexDirection: "column",
             }}
           >
-            <label for="visitDocType">Visit Doc Type:</label>
+            <label htmlFor="visitDocType">Visit Doc Type:</label>
             <select
               id="visitDocType"
               name="visitDocType"
@@ -221,8 +229,11 @@ function ActivityForm() {
                 const visitDocType = e.target.value;
               }}
             >
-              <option value="Check-up">Check-up</option>
               <option value="Illness">Illness</option>
+              <option value="Immunisation">Immunisation</option>
+              <option value="Childhood Dev Screening">
+                Childhood Dev Screening
+              </option>
             </select>
 
             <label>
@@ -231,16 +242,25 @@ function ActivityForm() {
             </label>
 
             <label>
-              Medicine:
-              <input type="text" name="medicine" />
-            </label>
-
-            <label>
               Diagnosis:
               <input type="text" name="diagnosis" />
             </label>
+
+            <label>
+              Medicine:
+              <input type="text" name="medicine" />
+            </label>
           </div>
         )}
+
+        <label>
+          Notes:
+          <input
+            type="text"
+            name="notes"
+            defaultValue="eg, pee/poop observations, allergy reaction, etc"
+          />
+        </label>
 
         <button
           style={{

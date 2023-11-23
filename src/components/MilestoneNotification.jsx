@@ -1,12 +1,19 @@
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { BabyContext } from "../App";
+import { Link, useNavigate } from "react-router-dom";
 
 function MileStoneNotification() {
+  const navigate = useNavigate();
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
   const babyAge = babyContext.babyAge;
+  const [checklist, setChecklist] = useState({});
+  const [statusInput, setStatusInput] = useState("not yet");
+  const [stocktake, setStocktake] = useState({});
 
-  const fetchHealthBooklet = async () => {
+  const fetchMilestoneChecklist = async () => {
+    // console.log(babyAge);
+    //output = 6 months
     try {
       const baseURL =
         "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblMIpP9oHDxzxUTz";
@@ -17,55 +24,89 @@ function MileStoneNotification() {
             "Bearer patIefr5XHGrnjTal.ce642a147091cffd80d78258215e6695909498a75c9c7d5c91fbce5f3b3fc91f",
         },
       });
-      const fetchedHealthBookletbyAge = await res.json();
-      console.log("1: " + fetchedBabyData.records[0]);
-      // console.log("2: " + fetchedBabyData.records[0].id);
-      // console.log("3: " + fetchedBabyData.records[0].fields);
+      const fetchedMilestoneChecklistbyAge = await res.json();
+      console.log("fetcheddata: " + fetchedMilestoneChecklistbyAge.records[0]);
+      //output = fetcheddata: [object Object]
+      console.log(JSON.stringify(fetchedMilestoneChecklistbyAge));
+      // output = {
+      //   "records": [
+      //     {
+      //       "id": "rec2bGrEyySFQqtxo",
+      //       "createdTime": "2023-11-22T18:21:18.000Z",
+      //       "fields": {
+      //         "ageRange": "6 - 12 months",
+      //         "event": "Childhood Dev Screening",
+      //         "age": "6 months",
+      //         "checklistQues": "Your child will try to get a toy that he enjoys when it is out of reach by stretching his arms or body. (Works for a toy out of reach)",
+      //         "devCategory": "Personal Social"
+      //       }
+      //     },
+      //   ]}
 
-      // Check if the response is nil or undefined
-      if (fetchedHealthBookletbyAge === undefined) {
+      // Check if the response is undefined
+      if (fetchedMilestoneChecklistbyAge.records[0] === undefined) {
+        console.log("nothing in the checklist to be notified of");
         return;
       } else {
-        const HealthBookletQues = {
-          babySysID: fetchedBabyData.records[0].id,
-          ...fetchedHealthBookletbyAge.records[0].fields,
+        const milestoneChecklistbyAge = {
+          ...fetchedMilestoneChecklistbyAge.records[0].fields,
         };
-        // used spread syntax above to include all properties of fetchedBabyData.records[0].fields directly in
-        // babyData without wrapping them inside another property (eg, babyDetails)
-        // o/p = {"babySysID":"recVZw45VqAgSq9ji","babyHeight":59,"babyName":"babyTest1","babyWeight":2.96,"babyDOB":"2023-08-07"}
-        // vs const babyData = {
-        // babySysID: fetchedBabyData.records[0].id,
-        // babyDetails: fetchedBabyData.records[0].fields,
-        // }; which yielded {
-        // "babySysID": "recbd7BvrVcIeP1mL",
-        // "babyDetails": {
-        //   "babyHeight": 55,
-        //   "babyName": "baby2",
-        //   "babyWeight": 3.04,
-        //   "babyDOB": "2023-01-01"}
 
-        console.log(JSON.stringify(babyData));
-        // output: {"babySysID":"recbd7BvrVcIeP1mL","babyDetails":{"babyHeight":55,"babyName":"baby2","babyWeight":3.04,"babyDOB":"2023-01-01"}}
-        // const babyDataS = JSON.stringify(babyData);
-        // setBabyDetails(babyDataS);
+        console.log(JSON.stringify(milestoneChecklistbyAge));
+        // output = {
+        //   "ageRange": "6 - 12 months",
+        //   "event": "Childhood Dev Screening",
+        //   "age": "6 months",
+        //   "checklistQues": "Your child will try to get a toy that he enjoys when it is out of reach by stretching his arms or body. (Works for a toy out of reach)",
+        //   "devCategory": "Personal Social"
+        // }
 
-        setBabyContext(babyData);
+        setChecklist(milestoneChecklistbyAge);
       }
-      navigate("/home", { replace: true });
     } catch (error) {
-      setError(
-        `Baby name: "${babyName}" not found. Please review your entry (case-sensitive).`
-      );
+      // setError(`unable to fetch data`);
       return;
     }
   };
 
+  useEffect(() => {
+    fetchMilestoneChecklist();
+  }, []);
+
   return (
-    <div>
-      <p style={{ fontSize: "30px", margin: "0", padding: "0em" }}>
+    <>
+      <div style={{ fontSize: "30px", margin: "0", padding: "0em" }}>
         {babyName} is {babyAge} old today!
-      </p>
-    </div>
+      </div>
+      {/* conditional rendering to vary notification output based on checklist data */}
+      {(checklist.checklistQues !== null ||
+        checklist.checklistQues !== undefined) &&
+        (checklist.recommendedVac !== null ||
+          checklist.recommendedVac !== undefined) && (
+          <div>
+            At {babyAge} old, you may wish to schedule {babyName} for
+            immunisation and/or do a stocktake of the Childhood Developmental
+            Screening checklist. Find out more
+            <Link to="/devmilestone"> here</Link>!
+          </div>
+        )}
+      {checklist.checklistQues === null &&
+        checklist.recommendedVac !== null && (
+          <div>
+            At {babyAge} old, {babyName} should be scheduled for
+            {checklist.recommendedVac} immunisation. Do remember to schedule a
+            visit soon if you haven't done so!
+          </div>
+        )}
+      {checklist.checklistQues !== null &&
+        checklist.recommendedVac === null && (
+          <div>
+            At {babyAge} old, you may wish to do a stocktake of the Childhood
+            Developmental Screening checklist. Click
+            <Link to="/devmilestone"> here</Link> to do it now!
+          </div>
+        )}
+    </>
   );
 }
 

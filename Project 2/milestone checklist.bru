@@ -5,7 +5,15 @@ meta {
 }
 
 get {
-  url: https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblMIpP9oHDxzxUTz
+  url: https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblMIpP9oHDxzxUTz?filterByFormula={age}='6 months'
   body: none
-  auth: none
+  auth: bearer
+}
+
+query {
+  filterByFormula: {age}
+}
+
+auth:bearer {
+  token: patIefr5XHGrnjTal.ce642a147091cffd80d78258215e6695909498a75c9c7d5c91fbce5f3b3fc91f
 }
