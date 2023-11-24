@@ -1,9 +1,27 @@
-# You got this, Baby!
+# [You got this, Baby!](https://yougotthis-baby.vercel.app/)
 
-One-stop platform for parents to track everything baby-related from baby's developmental growth to what they have (nursery, toys, etc).
+One-stop platform for parents to track everything baby-related, from their daily activities to vaccination schedules and developmental milestones.
 
-Baby stories (in Trello Board): https://trello.com/b/YbITqdl3/one-stop-baby-tracking-app-youve-got-this-baby
-Wireframe: https://miro.com/app/board/uXjVNQJDDXY=/#tpicker-content
+_Technologies used: React, React Router, Chakra UI Library (navigation breadcrumbs and alert)
+_Resources used:
+> Airtable for database
+> (fetched via API) Quotables for motivational quotes (https://github.com/lukePeavey/quotable#get-random-quotes)
+> Bruno to facilitate API testing
+> [Trello Board](https://trello.com/b/YbITqdl3/one-stop-baby-tracking-app-youve-got-this-baby) for User Stories
+> [Miro Board](https://miro.com/app/board/uXjVNQJDDXY=/#tpicker-content) for Wireframing
+
+## App Features
+
+_Welcome screen_
+<img width="941" alt="image" src="https://github.com/jx0906/yougotthisBaby/assets/142247158/b7dde736-851c-4974-9258-a292c671cad4">
+
+
+_Simple identification login_
+<img width="926" alt="image" src="https://github.com/jx0906/yougotthisBaby/assets/142247158/e970c1c4-6e1e-453f-a89d-15b0e1f11d20">
+
+_Home page with notification of upcoming developmental milestone events and overview of last 5 activity logs_
+<img width="929" alt="image" src="https://github.com/jx0906/yougotthisBaby/assets/142247158/9d3e623e-ba1f-42dd-b0e9-96afcb771cde">
+
 
 Checklist for self:
 
@@ -18,18 +36,17 @@ Checklist for self:
 - Be deployed online (Vercel).
 - Have full-CRUD single model operations somewhere within the app's features. For example, you can have functionality that Creates & Updates & Delete by implementing the ability to CRUD favourites.
 
-☐ App Title: Contains a description of what the app does and optional background info.
+## Planned future enhancements
 
-☐ Screenshot(s): A screenshot of your app's landing page and any other screenshots of interest.
+a. Interactive form to facilitate tracking of developmental milestone events
+b. Charts to facilitate tracking of child's development and activity records
+c. Enhance form logic and UI
+d. Include section for tracking of nursery items (eg, toys and going out necessities)
 
-☐ Technologies Used: React
+## Reflections: Challenges and Learning Points
 
-☐ Getting Started: Include a link to the deployed app and your Trello board with the project's planning.
 
-☐ Next Steps: Planned future enhancements (icebox items).
-
-References:
+Other References:
 https://www.healthhub.sg/programmes/children-health-ehb
 https://ch-api.healthhub.sg/api/public/content/30de6c1e56d34868afb5fa6df399e082?v=35bba801&_gl=1*1a2ixlc*_ga*MzQ5NDMxMDc2LjE2OTk2NzExMDg.*_ga_VQW1KL2RMR*MTY5OTk2MDY0OC41LjEuMTY5OTk2MDY1MS41Ny4wLjA.
 
-Quote of the day - https://github.com/lukePeavey/quotable#get-random-quotes
