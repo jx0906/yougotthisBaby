@@ -8,7 +8,7 @@ import {
 
 function Navigation() {
   return (
-    <Breadcrumb spacing="8px" separator=">">
+    <Breadcrumb spacing="8px" separator="|">
       <BreadcrumbItem isCurrentPage>
         <BreadcrumbLink as={Link} to="/">
           Welcome
@@ -25,8 +25,8 @@ function Navigation() {
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/">
-          Welcome
+        <BreadcrumbLink as={Link} to="/home/devmilestone">
+          Developmental Checklist
         </BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
