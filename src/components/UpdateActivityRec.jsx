@@ -96,19 +96,20 @@ function UpdateActivityRec() {
     <>
       <div
         style={{
-          minHeight: "600px",
-          minWidth: "400px",
+          minHeight: "700px",
+          minWidth: "1000px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          padding: "80px",
         }}
       >
         <form
           onSubmit={handleSubmitforEdit}
           style={{
-            minHeight: "200px",
-            minWidth: "400px",
+            minHeight: "300px",
+            minWidth: "700px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -129,6 +130,7 @@ function UpdateActivityRec() {
           <button
             style={{
               marginTop: 20,
+              marginBottom: 20,
               backgroundColor: "grey",
               color: "white",
               fontSize: "15px",
@@ -142,6 +144,7 @@ function UpdateActivityRec() {
           onClick={handleRecordDel}
           style={{
             backgroundColor: "grey",
+            padding-top: "20px",
             color: "white",
             fontSize: "15px",
           }}

@@ -58,8 +58,8 @@ function ActivityForm() {
         className="activityForm"
         onSubmit={handleSubmitNewRecord}
         style={{
-          minHeight: "600px",
-          minWidth: "400px",
+          minHeight: "700px",
+          minWidth: "1000px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -276,6 +276,7 @@ function ActivityForm() {
         <button
           style={{
             marginTop: 20,
+            marginBottom: 20,
             backgroundColor: "grey",
             color: "white",
             fontSize: "15px",
