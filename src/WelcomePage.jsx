@@ -11,6 +11,7 @@ import App, { BabyContext } from "./App.jsx";
 import QuoteDay from "./components/QuoteDay.jsx";
 
 function WelcomePage() {
+  const apiKey = import.meta.env.VITE_MY_KEY;
   const [babyName, setBabyName] = useState("");
   const { babyContext, setBabyContext } = useContext(BabyContext);
   // The use of curly brackets above is to destructure the BabyContext obj. This provides a way to extract
@@ -31,8 +32,7 @@ function WelcomePage() {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "Bearer patIefr5XHGrnjTal.ce642a147091cffd80d78258215e6695909498a75c9c7d5c91fbce5f3b3fc91f",
+            Authorization: `Bearer ${apiKey}`,
           },
         }
       );

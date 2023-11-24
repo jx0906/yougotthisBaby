@@ -5,7 +5,7 @@ import { BabyContext, ActivityToLogContext } from "../App";
 import ActivityHistory from "./ActivityHistory";
 import MilestoneNotification from "./MilestoneNotification";
 
-function HomeOverview() {
+function HomeOverview({ devMilestone, updateDevMilestone }) {
   const navigate = useNavigate();
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
@@ -34,7 +34,10 @@ function HomeOverview() {
     <>
       {/* <button type="click" img="insert settings icon" onClick={() => <SettingsPage/>}> */}
       <h3 style={{ margin: "0", padding: "0.2em" }}>Welcome back!</h3>
-      <MilestoneNotification />
+      <MilestoneNotification
+        devMilestone={devMilestone}
+        updateDevMilestone={updateDevMilestone}
+      />
       <div
         className="Activity Log"
         style={{

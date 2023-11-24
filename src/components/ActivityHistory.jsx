@@ -1,7 +1,11 @@
 import { useState, useContext, useEffect } from "react";
 import { BabyContext } from "../App";
+import { useNavigate } from "react-router-dom";
+import EditActivity from "./EditActivity";
 
 function ActivityHistory() {
+  const apiKey = import.meta.env.VITE_MY_KEY;
+  const navigate = useNavigate();
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
   //setting aData as array because API will return the data in an array of obj[{}] - see line 32
@@ -16,8 +20,7 @@ function ActivityHistory() {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer patIefr5XHGrnjTal.ce642a147091cffd80d78258215e6695909498a75c9c7d5c91fbce5f3b3fc91f",
+          Authorization: `Bearer ${apiKey}`,
         },
       }
     );
@@ -142,6 +145,16 @@ function ActivityHistory() {
     setAData(activityData);
   };
 
+  function handleEdit(evt) {
+    console.log("test");
+    const id = evt.target.id;
+    // use Params II: earlier we had used "id" as a param (ie, prop in URL) in the route path for child component (ie,
+    //   activityhistory). so now we use the useNavigate hook to navigate to the grandchild component
+    //   with the id so we can call on useParams to retrieve the info.
+    navigate(`/${id}/edit`);
+    // <EditActivity selActivityId={selActivityId} />;
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       await fetchActivityLog();
@@ -189,8 +202,9 @@ function ActivityHistory() {
                 <td key={index}>{val}</td>
               ))}
               <td>
-                <button type="click">X</button>
-                {/* need to put in handleEdit functions */}
+                <button id={record.id} type="click" onClick={handleEdit}>
+                  Edit
+                </button>
               </td>
             </tr>
           ))}

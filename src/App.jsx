@@ -6,7 +6,9 @@ import WelcomePage from "./WelcomePage.jsx";
 import HomeOverview from "./components/HomeOverview.jsx";
 import ActivityForm from "./components/ActivityForm";
 import NavigationSignpost from "./components/Navigation";
-import DevMilestone from "./components/DevMilestone";
+import DevMilestone from "./components/DevMilestone.jsx";
+import EditActivity from "./components/EditActivity.jsx";
+import ActivityHistory from "./components/ActivityHistory.jsx";
 
 // BabyContext expected to hold all the records (from my API or any user action) for the specified baby
 const BabyContext = createContext();
@@ -19,6 +21,7 @@ function App() {
   //using useState to update the babyContext values so child components can call on it
   const [activityToLogContext, setActivityToLogContext] = useState("");
   const [babyContext, setBabyContext] = useState({});
+
   //prop lifting with function to update the state values which I will pass to child components
   const [devMilestone, setDevMilestone] = useState({
     checklistQues: null,
@@ -50,10 +53,28 @@ function App() {
           <Route path="/" element={<WelcomePage />} />
           {/* The nested <Route>s inherit and add to the parent route. So the welcome path is combined with
 the parent to become /welcome. */}
-          <Route path="home" element={<HomeOverview />} />
-          <Route path="home/logactivity" element={<ActivityForm />} />
           <Route
-            path="home/devmilestone"
+            path="home"
+            element={
+              <HomeOverview
+                devMilestone={devMilestone}
+                updateDevMilestone={updateDevMilestone}
+              />
+            }
+          />
+          <Route path="logactivity" element={<ActivityForm />} />
+
+          {/* useParams I: want to use params to pass and retrieve data (such as an ID) from a button click in child
+          component to a grandchild component (because the grandchild component is not directly
+          mentioned in the child component in this case due to conditional rendering or navigation)
+          first need to set up a route with a parameter in the parent component; doesn't involve direct
+          passing of prop to grandchild component like with the commented out route which complicates
+          things cos - how to define it at the parent component?  */}
+          <Route path=":id" element={<ActivityHistory />} />
+          <Route path=":id/edit" element={<EditActivity />} />
+          {/* <Route path="editActivity" element={<EditActivity selectedID={selectedID} />} /> */}
+          <Route
+            path="devmilestone"
             element={
               <DevMilestone
                 devMilestone={devMilestone}
@@ -61,7 +82,6 @@ the parent to become /welcome. */}
               />
             }
           />
-          {/* <Route path="signup" element={<SignUpForm />} /> */}
         </Routes>
       </ActivityToLogContext.Provider>
     </BabyContext.Provider>
