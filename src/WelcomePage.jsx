@@ -14,11 +14,6 @@ function WelcomePage() {
   const apiKey = import.meta.env.VITE_MY_KEY;
   const [babyName, setBabyName] = useState("");
   const { babyContext, setBabyContext } = useContext(BabyContext);
-  // The use of curly brackets above is to destructure the BabyContext obj. This provides a way to extract
-  // specific properties from an object and assign them to variables with the same name.
-  // In the context of useContext in React, useContext(BabyContext) returns an object with the values
-  // provided by the BabyContext provider. If you want to extract multiple properties, you can include them
-  // in the curly brackets.
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
@@ -37,11 +32,6 @@ function WelcomePage() {
         }
       );
       const fetchedBabyData = await res.json();
-      console.log("1: " + fetchedBabyData.records[0]);
-      // console.log("2: " + fetchedBabyData.records[0].id);
-      // console.log("3: " + fetchedBabyData.records[0].fields);
-
-      // Check if the response is nil or undefined
       if (fetchedBabyData.records[0] === undefined) {
         setError(
           `${babyName} not found. Please review your entry (case-sensitive).`
@@ -52,33 +42,11 @@ function WelcomePage() {
           babySysID: fetchedBabyData.records[0].id,
           ...fetchedBabyData.records[0].fields,
         };
-        // used spread syntax above to include all properties of fetchedBabyData.records[0].fields directly in
-        // babyData without wrapping them inside another property (eg, babyDetails)
-        // o/p = {"babySysID":"recVZw45VqAgSq9ji","babyHeight":59,"babyName":"babyTest1","babyWeight":2.96,"babyDOB":"2023-08-07"}
-        // vs const babyData = {
-        // babySysID: fetchedBabyData.records[0].id,
-        // babyDetails: fetchedBabyData.records[0].fields,
-        // }; which yielded {
-        // "babySysID": "recbd7BvrVcIeP1mL",
-        // "babyDetails": {
-        //   "babyHeight": 55,
-        //   "babyName": "baby2",
-        //   "babyWeight": 3.04,
-        //   "babyDOB": "2023-01-01"}
-
-        console.log(JSON.stringify(babyData));
-        // output: {"babySysID":"recbd7BvrVcIeP1mL","babyDetails":{"babyHeight":55,"babyName":"baby2","babyWeight":3.04,"babyDOB":"2023-01-01"}}
-        // const babyDataS = JSON.stringify(babyData);
-        // setBabyDetails(babyDataS);
 
         setBabyContext(babyData);
-        // console.log(`babyDetails=${babyProfile}`); // output [object object], same even if i const babyDataS = JSON.stringify(babyData) and setBabyProfile(babyDataS);
-        // console.log(babyDetails); // output {} with properties, no value; same even if i const babyDataS = JSON.stringify(babyData) and setBabyProfile(babyDataS);
-        // console.log(JSON.stringify(babyDetails)); // output {}, same even if i const babyDataS = JSON.stringify(babyData) and setBabyProfile(babyDataS);
       }
       navigate("/home", { replace: true });
     } catch (error) {
-      // console.error("Error fetching data:", error);
       setError(
         `Baby name: "${babyName}" not found. Please review your entry (case-sensitive).`
       );
@@ -127,9 +95,6 @@ function WelcomePage() {
           >
             Let's go!
           </button>
-          {/* <button type="submit" onClick={() => <SignupForm />}>
-      Sign up
-    </button> */}
         </form>
         {error ? (
           <Alert

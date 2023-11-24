@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { BabyContext, ActivityToLogContext } from "../App";
-
 import { useNavigate } from "react-router";
 
 function ActivityForm() {
@@ -12,17 +11,12 @@ function ActivityForm() {
   const apiKey = import.meta.env.VITE_MY_KEY;
   const navigate = useNavigate();
 
-  console.log("Context:" + ActivityToLogContext); // Context:[object Object]
-  console.log("Variable:" + activityToLogContext); // Variable:Sleep
-  console.log("Variable:" + babyContext); // Variable:[object Object]
-  console.log("Variable:" + babyName); // Variable:[object Object]
-
   const handleSubmitNewRecord = (evt) => {
     evt.preventDefault();
 
     const formData = new FormData(evt.target);
     const data = Object.fromEntries(formData);
-    console.log(data); // output = {activity: 'Play', dateTime: '2023-10-31T11:51', duration: '10', playType: 'tummy time'}
+    console.log(data);
 
     const activityData = {
       records: [
@@ -30,8 +24,6 @@ function ActivityForm() {
           fields: {
             babyName: babyName,
             ...data,
-            // used the spread operator to include all properties from the data object into the fields property of
-            // the activityData object. The duration property is handled separately, converting it to an integer as needed.
             duration: parseInt(data.duration) || "0",
             milkVol: parseInt(data.milkVol) || "",
           },
@@ -70,8 +62,8 @@ function ActivityForm() {
           minWidth: "400px",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center", // Center horizontally
-          justifyContent: "center", // Center vertically
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <>
@@ -82,9 +74,6 @@ function ActivityForm() {
               flexDirection: "column",
             }}
           >
-            {/* The for attribute in HTML is used to associate a <label> element with a form control, indicating which form element the label is labeling.
-          However, in JSX, for is a reserved keyword, and it can't be used as an attribute name because it might conflict with the JavaScript for loop. 
-          so we use htmlFor instead in JSX. */}
             <label htmlFor="activity">Activity: </label>
             <select
               name="activity"
@@ -93,10 +82,6 @@ function ActivityForm() {
                 setActivityToLogContext(e.target.value);
               }}
             >
-              {/* The name attribute is used to identify form controls when submitting a form to the server. It is essential for form elements because it allows you to associate
-            a user-friendly name with the data sent to the server, eg For example, when a form is submitted, the data is typically sent as key-value pairs, where the name
-            attribute is used as the key. The value attribute, on the other hand, sets the initial value of an input element. For form elements like text inputs, radio buttons,
-            checkboxes, etc., the value attribute defines the default or initial value of the input. */}
               <option name="Feed" value="Feed">
                 Feed
               </option>
@@ -119,7 +104,7 @@ function ActivityForm() {
               <input type="datetime-local" name="dateTime" required />
             </label>
           </div>
-          {/* using conditional rendering instead of ternary operator as we have >2 options */}
+
           {activityToLogContext === "Diaper" && (
             <div
               name="Diaper"

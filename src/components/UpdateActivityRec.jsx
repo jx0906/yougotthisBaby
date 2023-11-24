@@ -12,11 +12,9 @@ function UpdateActivityRec() {
   const baseURL =
     "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps";
 
-  // useParams III: now finally, use useParams hook to access the ID of the selected record from the URL!
   const { id } = useParams();
 
   useEffect(() => {
-    // Fetch data from the API
     const fetchSelActivity = async () => {
       try {
         const res = await fetch(`${baseURL}/${id}`, {
@@ -26,55 +24,21 @@ function UpdateActivityRec() {
           },
         });
 
-        //return a form based on everything inside
         const fetchedSelActivity = await res.json();
         console.log(fetchedSelActivity);
-
-        //output: {
-        //   "id": "recw8F6jPp2e28SZx",
-        //   "createdTime": "2023-11-18T14:59:07.000Z",
-        //   "fields": {
-        //     "date": "2023-11-05",
-        //     "duration": "0",
-        //     "milkVol": 150,
-        //     "dateTime": "2023-11-05T14:59:00.000Z",
-        //     "activity": "Feed",
-        //     "milkType": "Pumped Milk",
-        //     "babyName": "testBaby"
-        //   }
-        // }
-        // const allSelActivityData = fetchedSelActivity.fields;
-        // console.log(allSelActivityData);
 
         if (fetchedSelActivity) {
           setFormData(fetchedSelActivity.fields);
         }
-        // Update form data with fetched values
-        // setFormData((prevEditForm) => {
-        //   const updatedEditForm = { ...prevEditForm };
-
-        // for (const key in fetchedSelActivity.records[0].fields) {
-        //   if (fetchedSelActivity.records[0].fields.hasOwnProperty(key)) {
-        //     updatedEditForm[key] = fetchedSelActivity.records[0].fields[key];
-        //   }
-        // }
-
-        // static updating:
-        // setEditForm({
-        //     fieldName1: apiData.fieldName1,
-        //     fieldName2: apiData.fieldName2,
-        //     // ... update other fields
-        //   });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchSelActivity();
     console.log(formData);
-  }, [id]); // Empty dependency array ensures useEffect runs only once on mount
+  }, [id]);
 
   const handleFormChange = (evt) => {
-    // because formData is a state variable so update like this:
     setFormData((prevFormData) => ({
       ...prevFormData,
       [evt.target.name]: evt.target.value,
@@ -83,7 +47,6 @@ function UpdateActivityRec() {
 
   const handleSubmitforEdit = (evt) => {
     evt.preventDefault();
-    // not referencing formData because it would have been updated by handleFormChange
     const updatedFormData = new FormData(evt.target);
     const data = Object.fromEntries(updatedFormData);
 
@@ -113,7 +76,6 @@ function UpdateActivityRec() {
 
   const handleRecordDel = (evt) => {
     evt.preventDefault();
-    // not referencing formData because it would have been updated by handleFormChange
     deleteActivityRecord(updateData);
     navigate("/home");
 
@@ -132,36 +94,53 @@ function UpdateActivityRec() {
 
   return (
     <>
-      <form onSubmit={handleSubmitforEdit}>
-        {Object.keys(formData).map((fieldKey) => (
-          <label key={fieldKey}>
-            {fieldKey}:
-            <input
-              type="text"
-              name={fieldKey}
-              value={formData[fieldKey]}
-              onChange={handleFormChange}
-            />
-          </label>
-        ))}
-
-        <button
+      <div
+        style={{
+          minHeight: "600px",
+          minWidth: "400px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <form
+          onSubmit={handleSubmitforEdit}
           style={{
-            marginTop: 20,
-            backgroundColor: "grey",
-            color: "white",
-            fontSize: "15px",
+            minHeight: "200px",
+            minWidth: "400px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          Edit
-        </button>
-      </form>
-
-      <div>
+          {Object.keys(formData).map((fieldKey) => (
+            <label key={fieldKey}>
+              {fieldKey}:
+              <input
+                type="text"
+                name={fieldKey}
+                value={formData[fieldKey]}
+                onChange={handleFormChange}
+              />
+            </label>
+          ))}
+          <button
+            style={{
+              marginTop: 20,
+              backgroundColor: "grey",
+              color: "white",
+              fontSize: "15px",
+            }}
+          >
+            Edit
+          </button>
+        </form>
         <button
+          type="click"
           onClick={handleRecordDel}
           style={{
-            marginTop: 20,
             backgroundColor: "grey",
             color: "white",
             fontSize: "15px",

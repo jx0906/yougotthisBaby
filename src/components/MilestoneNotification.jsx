@@ -12,7 +12,6 @@ function MileStoneNotification({ devMilestone, updateDevMilestone }) {
     "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblMIpP9oHDxzxUTz";
 
   const fetchMilestoneChecklist = async () => {
-    // console.log(babyAge);  //output = 6 months
     try {
       const res = await fetch(`${baseURL}?filterByFormula={age}='${babyAge}'`, {
         headers: {
@@ -21,60 +20,21 @@ function MileStoneNotification({ devMilestone, updateDevMilestone }) {
         },
       });
       const fetchedMilestoneChecklistbyAge = await res.json();
-      console.log("fetcheddata: " + fetchedMilestoneChecklistbyAge.records[0]);
-      //output = fetcheddata: [object Object]
-      console.log(JSON.stringify(fetchedMilestoneChecklistbyAge));
-      // output = {
-      //   "records": [
-      //     {
-      //       "id": "rec2bGrEyySFQqtxo",
-      //       "createdTime": "2023-11-22T18:21:18.000Z",
-      //       "fields": {
-      //         "ageRange": "6 - 12 months",
-      //         "event": "Childhood Dev Screening",
-      //         "age": "6 months",
-      //         "checklistQues": "Your child will try to get a toy that he enjoys when it is out of reach by stretching his arms or body. (Works for a toy out of reach)",
-      //         "devCategory": "Personal Social"
-      //       }
-      //     },
-      //   ]}
 
-      // Check if the response is undefined
       if (fetchedMilestoneChecklistbyAge.records[0] === undefined) {
         console.log("nothing in the checklist to be notified of");
         setChecklist("null");
         return;
       } else {
-        // using map to create a new array (milestoneChecklistbyAge.entry) by extracting the "fields"
-        // object from each record in fetchedMilestoneChecklistbyAge.records. This will ensure that all
-        // the field info would be included in the resulting array.
         const milestoneChecklistbyAge = {
           entry: fetchedMilestoneChecklistbyAge.records.map(
             (record) => record.fields
           ),
         };
-        console.log(JSON.stringify(milestoneChecklistbyAge));
-        // output = {
-        //     "entry": [
-        //       {
-        //         "ageRange": "6 - 12 months",
-        //         "event": "Childhood Dev Screening",
-        //         "age": "6 months",
-        //         "checklistQues": "Your child will try to get a toy that he enjoys when it is out of reach by stretching his arms or body. (Works for a toy out of reach)",
-        //         "devCategory": "Personal Social"
-        //       },
-        //       {
-        //         "ageRange": "6 - 12 months",
-        //         "event": "Childhood Dev Screening",
-        //         "age": "6 months",
-        //         "checklistQues": "Your child uses the word \"Papa\" and \"Mama\" specifically. (Says Papa/Mama specifically)",
-        //         "devCategory": "Language"
-        //       }]}
 
         setChecklist(milestoneChecklistbyAge);
       }
     } catch (error) {
-      // setError(`unable to fetch data`);
       return;
     }
   };
@@ -88,7 +48,7 @@ function MileStoneNotification({ devMilestone, updateDevMilestone }) {
       <div style={{ fontSize: "30px", margin: "0", padding: "0em" }}>
         {babyName} is {babyAge} old today!
       </div>
-      {/* conditional rendering to vary notification output based on checklist data */}
+
       {checklist.checklistQues !== null &&
         checklist.recommendedVac !== null && (
           <div>
