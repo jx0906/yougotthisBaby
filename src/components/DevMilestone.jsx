@@ -3,80 +3,79 @@ import { BabyContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
 function DevMilestone({ devMilestone, updateDevMilestone }) {
-  const apiKey = import.meta.env.VITE_MY_KEY;
-  const { babyContext } = useContext(BabyContext);
-  const babyName = babyContext.babyName;
-  const babyAge = babyContext.babyAge;
+  // const apiKey = import.meta.env.VITE_MY_KEY;
+  // const baseURL =
+  //   "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps";
+  // const { babyContext } = useContext(BabyContext);
+  // const babyName = babyContext.babyName;
+  // const babyAge = babyContext.babyAge;
 
-  // const [devMilestone, setDevMilestone] = useState({
-  //   checklistQues: null,
-  //   recommendedVac: null,
+  // // const [devMilestone, setDevMilestone] = useState({
+  // //   checklistQues: null,
+  // //   recommendedVac: null,
+  // // });
+
+  // // const updateDevMilestone = (newDevChecklist) => {
+  // //   setDevMilestone(newDevChecklist);
+  // // };
+
+  // milestoneChecklistbyAge.forEach((entry) => {
+  //   const newDevChecklist = {
+  //     devCategory: entry.devCategory,
+  //     checklistQues: entry.checklistQues || null,
+  //     recommendedVac: entry.recommendedVac || null,
+  //   };
   // });
+  // // output for milestoneChecklistbyAge= {
+  // //     "entry": [
+  // //       {
+  // //         "ageRange": "6 - 12 months",
+  // //         "event": "Childhood Dev Screening",
+  // //         "age": "6 months",
+  // //         "checklistQues": "Your child will try to get a toy that he enjoys when it is out of reach by stretching his arms or body. (Works for a toy out of reach)",
+  // //         "devCategory": "Personal Social"
+  // //       },
 
-  // const updateDevMilestone = (newDevChecklist) => {
-  //   setDevMilestone(newDevChecklist);
+  // const handleMilestoneSubmitResponse = async (evt) => {
+  //   evt.preventDefault();
+
+  //   const formData = new FormData(evt.target);
+  //   const data = Object.fromEntries(formData);
+  //   console.log(data);
+
+  //   const inputData = {
+  //     records: [
+  //       {
+  //         fields: {
+  //           babyName: babyName,
+  //           babyEventAge: babyAge,
+  //           visitDocType: "Childhood Dev Screening",
+  //           ...data,
+  //         },
+  //       },
+  //     ],
+  //   };
+  //   addNewActivity();
+  //   navigate("/home");
+  //   return;
   // };
 
-  milestoneChecklistbyAge.forEach((entry) => {
-    const newDevChecklist = {
-      devCategory: entry.devCategory,
-      checklistQues: entry.checklistQues || null,
-      recommendedVac: entry.recommendedVac || null,
-    };
-  });
-  // output for milestoneChecklistbyAge= {
-  //     "entry": [
-  //       {
-  //         "ageRange": "6 - 12 months",
-  //         "event": "Childhood Dev Screening",
-  //         "age": "6 months",
-  //         "checklistQues": "Your child will try to get a toy that he enjoys when it is out of reach by stretching his arms or body. (Works for a toy out of reach)",
-  //         "devCategory": "Personal Social"
-  //       },
-
-  const handleMilestoneSubmitResponse = async (evt) => {
-    evt.preventDefault();
-
-    const formData = new FormData(evt.target);
-    const data = Object.fromEntries(formData);
-    console.log(data);
-
-    const inputData = {
-      records: [
-        {
-          fields: {
-            babyName: babyName,
-            babyEventAge: babyAge,
-            visitDocType: "Childhood Dev Screening",
-            ...data,
-          },
-        },
-      ],
-    };
-    addNewActivity();
-    navigate("/home");
-    return;
-  };
-
-  async function addNewActivity() {
-    const response = await fetch(
-      "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify(inputData),
-      }
-    );
-    const newActivityRecord = await response.json();
-    console.log(JSON.stringify(newActivityRecord));
-  }
+  // async function addNewActivity() {
+  //   const response = await fetch(`${baseURL}`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${apiKey}`,
+  //     },
+  //     body: JSON.stringify(inputData),
+  //   });
+  //   const newActivityRecord = await response.json();
+  //   console.log(JSON.stringify(newActivityRecord));
+  // }
 
   return (
     <>
-      <div style={{ fontSize: "30px", margin: "0", padding: "0em" }}>
+      {/* <div style={{ fontSize: "30px", margin: "0", padding: "0em" }}>
         <form
           className="milestoneDevUpdate"
           onSubmit={handleMilestoneSubmitResponse}
@@ -93,12 +92,8 @@ function DevMilestone({ devMilestone, updateDevMilestone }) {
           </label>
 
           <label>
-            Notes:
-            <input
-              type="text"
-              name="notes"
-              defaultValue="eg, pee/poop observations, allergy reaction, etc"
-            />
+            Notes (eg, pee/poop observations, allergy reaction, etc):
+            <input type="text" name="notes" />
           </label>
 
           <table
@@ -108,17 +103,17 @@ function DevMilestone({ devMilestone, updateDevMilestone }) {
             }}
           >
             {/* Header Row */}
-            <tr key={"header"}>
+      {/* <tr key={"header"}>
               {Object.keys(allChecklistQues[0].entry).map((key) => (
                 <th key={key}>{key}</th>
               ))}
               <th>observation</th>
-            </tr>
-            {/* Data Rows - use state.map((item) => ...) to iterate over each item in the state array. Inside the
+            </tr> */}
+      {/* Data Rows - use state.map((item) => ...) to iterate over each item in the state array. Inside the
       mapping function, Object.values(item) is used to get an array of values for each item. It then maps
       over these values to create a <td> (table data) element for each value. This forms the data rows of
       the table. */}
-            {allChecklistQues.map((record) => (
+      {/* {allChecklistQues.map((record) => (
               <tr key="">
                 {Object.values(record).map((val, index) => (
                   <td key={index}>{val}</td>
@@ -157,7 +152,8 @@ function DevMilestone({ devMilestone, updateDevMilestone }) {
             Submit
           </button>
         </form>
-      </div>
+      </div> */}
+      <p>work in progress</p>
     </>
   );
 }

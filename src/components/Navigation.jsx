@@ -6,7 +6,7 @@ import {
   BreadcrumbSeparator,
 } from "@chakra-ui/react";
 
-function NavigationSignpost() {
+function Navigation() {
   return (
     <Breadcrumb spacing="8px" separator=">">
       <BreadcrumbItem isCurrentPage>
@@ -24,8 +24,13 @@ function NavigationSignpost() {
           Log Activity
         </BreadcrumbLink>
       </BreadcrumbItem>
+      <BreadcrumbItem>
+        <BreadcrumbLink as={Link} to="/">
+          Welcome
+        </BreadcrumbLink>
+      </BreadcrumbItem>
     </Breadcrumb>
   );
 }
 
-export default NavigationSignpost;
+export default Navigation;

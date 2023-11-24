@@ -5,9 +5,9 @@ import "./App.css";
 import WelcomePage from "./WelcomePage.jsx";
 import HomeOverview from "./components/HomeOverview.jsx";
 import ActivityForm from "./components/ActivityForm";
-import NavigationSignpost from "./components/Navigation";
+import Navigation from "./components/Navigation";
 import DevMilestone from "./components/DevMilestone.jsx";
-import EditActivity from "./components/EditActivity.jsx";
+import UpdateActivityRec from "./components/UpdateActivityRec.jsx";
 import ActivityHistory from "./components/ActivityHistory.jsx";
 
 // BabyContext expected to hold all the records (from my API or any user action) for the specified baby
@@ -24,6 +24,7 @@ function App() {
 
   //prop lifting with function to update the state values which I will pass to child components
   const [devMilestone, setDevMilestone] = useState({
+    devCategory: null,
     checklistQues: null,
     recommendedVac: null,
   });
@@ -40,7 +41,7 @@ function App() {
       <ActivityToLogContext.Provider
         value={{ activityToLogContext, setActivityToLogContext }}
       >
-        <NavigationSignpost />
+        <Navigation />
         <Routes>
           {/* Use the Navigate component to navigate to the WelcomePage
         <Route path="/welcome" element={<Navigate to="/welcome" replace />} 
@@ -71,10 +72,10 @@ the parent to become /welcome. */}
           passing of prop to grandchild component like with the commented out route which complicates
           things cos - how to define it at the parent component?  */}
           <Route path=":id" element={<ActivityHistory />} />
-          <Route path=":id/edit" element={<EditActivity />} />
-          {/* <Route path="editActivity" element={<EditActivity selectedID={selectedID} />} /> */}
+          <Route path=":id/update" element={<UpdateActivityRec />} />
+          {/* <Route path="UpdateActivityRec" element={<UpdateActivityRec selectedID={selectedID} />} /> */}
           <Route
-            path="devmilestone"
+            path="home/devmilestone"
             element={
               <DevMilestone
                 devMilestone={devMilestone}

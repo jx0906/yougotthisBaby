@@ -1,26 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { BabyContext } from "../App";
+import { useNavigate } from "react-router";
 
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-} from "@chakra-ui/react";
-
-function EditActivity() {
-  const apiKey = import.meta.env.VITE_MY_KEY;
+function UpdateActivityRec() {
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+  const apiKey = import.meta.env.VITE_MY_KEY;
+  const baseURL =
+    "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps";
 
   // useParams III: now finally, use useParams hook to access the ID of the selected record from the URL!
   const { id } = useParams();
-
-  const baseURL =
-    "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps";
 
   useEffect(() => {
     // Fetch data from the API
@@ -181,4 +174,4 @@ function EditActivity() {
   );
 }
 
-export default EditActivity;
+export default UpdateActivityRec;

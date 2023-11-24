@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { BabyContext, ActivityToLogContext } from "../App";
 
+import { useNavigate } from "react-router";
+
 function ActivityForm() {
   const { activityToLogContext, setActivityToLogContext } =
     useContext(ActivityToLogContext);
@@ -8,6 +10,7 @@ function ActivityForm() {
   const { babyContext, setBabyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
   const apiKey = import.meta.env.VITE_MY_KEY;
+  const navigate = useNavigate();
 
   console.log("Context:" + ActivityToLogContext); // Context:[object Object]
   console.log("Variable:" + activityToLogContext); // Variable:Sleep
@@ -29,7 +32,8 @@ function ActivityForm() {
             ...data,
             // used the spread operator to include all properties from the data object into the fields property of
             // the activityData object. The duration property is handled separately, converting it to an integer as needed.
-            // duration: parseInt(data.duration) || "0",
+            duration: parseInt(data.duration) || "0",
+            milkVol: parseInt(data.milkVol) || "",
           },
         },
       ],
@@ -37,6 +41,7 @@ function ActivityForm() {
 
     console.log(activityData);
     addNewActivity(activityData);
+    navigate("/home");
 
     async function addNewActivity() {
       const response = await fetch(

@@ -1,20 +1,18 @@
 import { useState, useContext, useEffect } from "react";
 import { BabyContext } from "../App";
 import { useNavigate } from "react-router-dom";
-import EditActivity from "./EditActivity";
 
 function ActivityHistory() {
-  const apiKey = import.meta.env.VITE_MY_KEY;
   const navigate = useNavigate();
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
   //setting aData as array because API will return the data in an array of obj[{}] - see line 32
   const [aData, setAData] = useState([]);
+  const apiKey = import.meta.env.VITE_MY_KEY;
+  const baseURL =
+    "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps";
 
   const fetchActivityLog = async () => {
-    const baseURL =
-      "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tbli0KeI5LkN332ps";
-
     const res = await fetch(
       `${baseURL}?filterByFormula={babyName}='${babyName}'&maxRecords=5&sort%5B0%5D%5Bfield%5D=dateTime&sort%5B0%5D%5Bdirection%5D=desc`,
       {
@@ -146,13 +144,12 @@ function ActivityHistory() {
   };
 
   function handleEdit(evt) {
-    console.log("test");
     const id = evt.target.id;
     // use Params II: earlier we had used "id" as a param (ie, prop in URL) in the route path for child component (ie,
     //   activityhistory). so now we use the useNavigate hook to navigate to the grandchild component
     //   with the id so we can call on useParams to retrieve the info.
-    navigate(`/${id}/edit`);
-    // <EditActivity selActivityId={selActivityId} />;
+    navigate(`/${id}/update`);
+    // <UpdateActivityRec selActivityId={selActivityId} />;
   }
 
   useEffect(() => {
@@ -190,7 +187,7 @@ function ActivityHistory() {
             {Object.keys(aData[0].fields).map((key) => (
               <th key={key}>{key}</th>
             ))}
-            <th>edit</th>
+            <th></th>
           </tr>
           {/* Data Rows - use state.map((item) => ...) to iterate over each item in the state array. Inside the
         mapping function, Object.values(item) is used to get an array of values for each item. It then maps

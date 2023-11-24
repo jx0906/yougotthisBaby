@@ -1,21 +1,19 @@
 import { useState, useContext, useEffect } from "react";
 import { BabyContext } from "../App";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function MileStoneNotification({ devMilestone, updateDevMilestone }) {
-  const navigate = useNavigate();
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
   const babyAge = babyContext.babyAge;
   const [checklist, setChecklist] = useState({});
   const apiKey = import.meta.env.VITE_MY_KEY;
+  const baseURL =
+    "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblMIpP9oHDxzxUTz";
 
   const fetchMilestoneChecklist = async () => {
-    // console.log(babyAge);
-    //output = 6 months
+    // console.log(babyAge);  //output = 6 months
     try {
-      const baseURL =
-        "https://api.airtable.com/v0/appEcc6SwsoURvmeO/tblMIpP9oHDxzxUTz";
       const res = await fetch(`${baseURL}?filterByFormula={age}='${babyAge}'`, {
         headers: {
           "Content-Type": "application/json",
@@ -44,6 +42,7 @@ function MileStoneNotification({ devMilestone, updateDevMilestone }) {
       // Check if the response is undefined
       if (fetchedMilestoneChecklistbyAge.records[0] === undefined) {
         console.log("nothing in the checklist to be notified of");
+        setChecklist("null");
         return;
       } else {
         // using map to create a new array (milestoneChecklistbyAge.entry) by extracting the "fields"
