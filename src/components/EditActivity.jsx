@@ -2,11 +2,19 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { BabyContext } from "../App";
 
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from "@chakra-ui/react";
+
 function EditActivity() {
   const apiKey = import.meta.env.VITE_MY_KEY;
   const { babyContext } = useContext(BabyContext);
   const babyName = babyContext.babyName;
   const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
 
   // useParams III: now finally, use useParams hook to access the ID of the selected record from the URL!
   const { id } = useParams();
@@ -88,53 +96,88 @@ function EditActivity() {
 
     const updateData = {
       fields: {
-            ...data,
-          },
-        }
+        ...data,
+      },
+    };
 
     console.log(updateData);
     updateActivityRecord(updateData);
-    return
+    navigate("/home");
+  };
 
-    async function updateActivityRecord() {
+  async function updateActivityRecord() {
+    const response = await fetch(`${baseURL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify(updateData),
+    });
+    const updatedActivityRecord = await response.json();
+    console.log(JSON.stringify(updatedActivityRecord));
+  }
+
+  const handleRecordDel = (evt) => {
+    evt.preventDefault();
+    // not referencing formData because it would have been updated by handleFormChange
+    deleteActivityRecord(updateData);
+    navigate("/home");
+
+    async function deleteActivityRecord() {
       const response = await fetch(`${baseURL}/${id}`, {
-        method: "PATCH",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
         },
-        body: JSON.stringify(updateData),
       });
-      const updatedActivityRecord = await response.json();
-      console.log(JSON.stringify(updatedActivityRecord));
+      const updatedRecords = await response.json();
+      console.log(JSON.stringify(updatedRecords));
     }
   };
 
   return (
-    <form onSubmit={handleSubmitforEdit}>
-      {Object.keys(formData).map((fieldKey) => (
-        <label key={fieldKey}>
-          {fieldKey}:
-          <input
-            type="text"
-            name={fieldKey}
-            value={formData[fieldKey]}
-            onChange={handleFormChange}
-          />
-        </label>
-      ))}
+    <>
+      <form onSubmit={handleSubmitforEdit}>
+        {Object.keys(formData).map((fieldKey) => (
+          <label key={fieldKey}>
+            {fieldKey}:
+            <input
+              type="text"
+              name={fieldKey}
+              value={formData[fieldKey]}
+              onChange={handleFormChange}
+            />
+          </label>
+        ))}
 
-      <button
-        style={{
-          marginTop: 20,
-          backgroundColor: "grey",
-          color: "white",
-          fontSize: "15px",
-        }}
-      >
-        Submit
-      </button>
-    </form>
+        <button
+          style={{
+            marginTop: 20,
+            backgroundColor: "grey",
+            color: "white",
+            fontSize: "15px",
+          }}
+        >
+          Edit
+        </button>
+      </form>
+
+      <div>
+        <button
+          onClick={handleRecordDel}
+          style={{
+            marginTop: 20,
+            backgroundColor: "grey",
+            color: "white",
+            fontSize: "15px",
+          }}
+        >
+          Delete
+        </button>
+      </div>
+    </>
   );
 }
 
