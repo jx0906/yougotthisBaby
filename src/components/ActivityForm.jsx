@@ -29,7 +29,7 @@ function ActivityForm() {
             ...data,
             // used the spread operator to include all properties from the data object into the fields property of
             // the activityData object. The duration property is handled separately, converting it to an integer as needed.
-            // duration: parseInt(data.duration) || "0:00",
+            // duration: parseInt(data.duration) || "0",
           },
         },
       ],
@@ -113,16 +113,6 @@ function ActivityForm() {
               Date and Time:
               <input type="datetime-local" name="dateTime" required />
             </label>
-
-            <label>
-              Duration:
-              <input
-                type="string"
-                name="duration"
-                min="0:00"
-                defaultValue="enter in hh:mm"
-              />
-            </label>
           </div>
           {/* using conditional rendering instead of ternary operator as we have >2 options */}
           {activityToLogContext === "Diaper" && (
@@ -164,6 +154,11 @@ function ActivityForm() {
                 <option value="Nap">Nap</option>
                 <option value="Night">Night</option>
               </select>
+
+              <label>
+                Duration (hh:mm):
+                <input type="string" name="duration" />
+              </label>
             </div>
           )}
           {activityToLogContext === "Feed" && (
@@ -203,6 +198,11 @@ function ActivityForm() {
               <label>
                 Play type:
                 <input type="text" name="playType" />
+              </label>
+
+              <label>
+                Duration (hh:mm):
+                <input type="string" name="duration" />
               </label>
             </div>
           )}
@@ -279,12 +279,8 @@ function ActivityForm() {
           )}
 
           <label>
-            Notes:
-            <input
-              type="text"
-              name="notes"
-              defaultValue="eg, pee/poop observations, allergy reaction, etc"
-            />
+            Notes (eg, pee/poop observations, allergy reaction, etc):
+            <input type="text" name="notes" />
           </label>
         </>
         <button

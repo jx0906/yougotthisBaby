@@ -62,7 +62,7 @@ the parent to become /welcome. */}
               />
             }
           />
-          <Route path="logactivity" element={<ActivityForm />} />
+          <Route path="home/logactivity" element={<ActivityForm />} />
 
           {/* useParams I: want to use params to pass and retrieve data (such as an ID) from a button click in child
           component to a grandchild component (because the grandchild component is not directly

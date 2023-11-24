@@ -90,7 +90,7 @@ function ActivityHistory() {
       fields: {
         // babyName: entry.fields.babyName,
         dateTime: entry.fields.dateTime,
-        duration: entry.fields.duration,
+        // duration: entry.fields.duration,
         // duration: entry.fields?.duration || "",
         activity: entry.fields.activity,
       },
