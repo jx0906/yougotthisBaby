@@ -2,10 +2,10 @@ import React, { useState, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
+import Navigation from "./Navigation.jsx";
 import WelcomePage from "./WelcomePage.jsx";
 import HomeOverview from "./components/HomeOverview.jsx";
 import ActivityForm from "./components/ActivityForm";
-import Navigation from "./components/Navigation";
 import DevMilestone from "./components/DevMilestone.jsx";
 import UpdateActivityRec from "./components/UpdateActivityRec.jsx";
 import ActivityHistory from "./components/ActivityHistory.jsx";
@@ -33,37 +33,39 @@ function App() {
   };
 
   return (
-    <BabyContext.Provider value={{ babyContext, setBabyContext }}>
-      <ActivityToLogContext.Provider
-        value={{ activityToLogContext, setActivityToLogContext }}
-      >
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<WelcomePage />} />
-          <Route
-            path="home"
-            element={
-              <HomeOverview
-                devMilestone={devMilestone}
-                updateDevMilestone={updateDevMilestone}
-              />
-            }
-          />
-          <Route path="home/logactivity" element={<ActivityForm />} />
-          <Route path=":id" element={<ActivityHistory />} />
-          <Route path=":id/update" element={<UpdateActivityRec />} />
-          <Route
-            path="home/devmilestone"
-            element={
-              <DevMilestone
-                devMilestone={devMilestone}
-                updateDevMilestone={updateDevMilestone}
-              />
-            }
-          />
-        </Routes>
-      </ActivityToLogContext.Provider>
-    </BabyContext.Provider>
+    <>
+      <Navigation />
+      <BabyContext.Provider value={{ babyContext, setBabyContext }}>
+        <ActivityToLogContext.Provider
+          value={{ activityToLogContext, setActivityToLogContext }}
+        >
+          <Routes>
+            <Route path="/" element={<WelcomePage />} />
+            <Route
+              path="home"
+              element={
+                <HomeOverview
+                  devMilestone={devMilestone}
+                  updateDevMilestone={updateDevMilestone}
+                />
+              }
+            />
+            <Route path="home/logactivity" element={<ActivityForm />} />
+            <Route path=":id" element={<ActivityHistory />} />
+            <Route path=":id/update" element={<UpdateActivityRec />} />
+            <Route
+              path="home/devmilestone"
+              element={
+                <DevMilestone
+                  devMilestone={devMilestone}
+                  updateDevMilestone={updateDevMilestone}
+                />
+              }
+            />
+          </Routes>
+        </ActivityToLogContext.Provider>
+      </BabyContext.Provider>
+    </>
   );
 }
 

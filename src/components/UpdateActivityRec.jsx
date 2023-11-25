@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
+import { IconButton } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 function UpdateActivityRec() {
   const [formData, setFormData] = useState({});
@@ -93,13 +95,12 @@ function UpdateActivityRec() {
     <>
       <div
         style={{
-          minHeight: "700px",
-          minWidth: "1000px",
+          maxHeight: "500px",
+          maxWidth: "800px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "80px",
         }}
       >
         <form
@@ -108,8 +109,9 @@ function UpdateActivityRec() {
             handleSubmitforEdit(evt);
           }}
           style={{
-            minHeight: "300px",
-            minWidth: "700px",
+            maxHeight: "380px",
+            maxWidth: "800px",
+            paddingTop: "30px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -140,17 +142,14 @@ function UpdateActivityRec() {
             Edit
           </button>
         </form>
-        <button
-          type="button"
+        <IconButton
+          aria-label="Delete Record"
+          variant="outline"
+          size="lg"
+          boxSize={20}
           onClick={handleSubmitforDel}
-          style={{
-            backgroundColor: "grey",
-            color: "white",
-            fontSize: "15px",
-          }}
-        >
-          Delete
-        </button>
+          icon={<DeleteIcon />}
+        />
       </div>
     </>
   );

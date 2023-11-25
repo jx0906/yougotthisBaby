@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { BabyContext, ActivityToLogContext } from "../App";
 import { useNavigate } from "react-router";
+import { IconButton } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 function ActivityForm() {
   const { activityToLogContext, setActivityToLogContext } =
@@ -24,8 +26,8 @@ function ActivityForm() {
           fields: {
             babyName: babyName,
             ...data,
-            duration: parseInt(data.duration) || "0",
-            milkVol: parseInt(data.milkVol) || "",
+            duration: parseInt(data.duration),
+            milkVol: parseInt(data.milkVol),
           },
         },
       ],
@@ -58,8 +60,8 @@ function ActivityForm() {
         className="activityForm"
         onSubmit={handleSubmitNewRecord}
         style={{
-          minHeight: "700px",
-          minWidth: "1000px",
+          maxHeight: "700px",
+          maxWidth: "1000px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -146,7 +148,7 @@ function ActivityForm() {
               </select>
 
               <label>
-                Duration (hh:mm):
+                Duration (in min):
                 <input type="string" name="duration" />
               </label>
             </div>
@@ -191,7 +193,7 @@ function ActivityForm() {
               </label>
 
               <label>
-                Duration (hh:mm):
+                Duration (in min):
                 <input type="string" name="duration" />
               </label>
             </div>
@@ -285,6 +287,14 @@ function ActivityForm() {
           Submit
         </button>
       </form>
+      <IconButton
+        aria-label="Cancel"
+        variant="outline"
+        size="lg"
+        boxSize={20}
+        onClick={() => navigate("/home")}
+        icon={<DeleteIcon />}
+      />
     </>
   );
 }
