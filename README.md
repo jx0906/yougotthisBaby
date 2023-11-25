@@ -2,8 +2,8 @@
 
 One-stop platform for parents to track everything baby-related, from their daily activities to vaccination schedules and developmental milestones.
 
-_Technologies used: React, React Router, Chakra UI Library (navigation breadcrumbs and alert)
-_Resources used:
+_Technologies used: React, React Router, Chakra UI Library (navigation breadcrumbs and alert)_
+_Resources used:_
  - Airtable for database
  - (fetched via API) Quotables for motivational quotes (https://github.com/lukePeavey/quotable#get-random-quotes)
  - Bruno to facilitate API testing
