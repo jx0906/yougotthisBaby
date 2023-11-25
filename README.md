@@ -1,4 +1,4 @@
-# [You got this, Baby!](https://yougotthis-baby.vercel.app/)
+# [You've got this, Baby!](https://yougotthis-baby.vercel.app/)
 
 One-stop platform for parents to track everything baby-related, from their daily activities to vaccination schedules and developmental milestones.
 
