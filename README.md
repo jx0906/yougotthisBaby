@@ -42,6 +42,34 @@ I started off with great anticipation for this project due to the possibilities 
 
 Unlike the experience from the first project though, instead of choosing to tackle these challenges alone, I found myself reaching out to the instructors and peers for advice. The benefits were immense. Besides the opportunity to clarify our doubts, through the process, we also got to reinforce our own learning when we troubleshoot or did code reviews for each other. Through peer learning, I was also reminded of some critical traits every software engineer should possess - resourcefulness to troubleshoot and self-learn, tenacity and resilience to persevere and try again when almost every part of the code was breaking for no reason and more importantly, discipline and patience - to recognise when to take a break when things are muddled and seemingly at a standstill. 
 
+My favourite code segment would undoubtedly be the portions involving "useParams" due to the sheer elegance and simplicity of it as a "prop" transfer tool to pass information from one component to another, eg, the ID for a user-selected activity record to be updated. With Params, I was able to quickly and effectively pass the record id info from the activity overview component to the activity update component for API PATCH.    
+
+```
+function App() {
+      ...
+      <Route path="home/logactivity" element={<ActivityForm />} />
+      <Route path=":id" element={<ActivityHistory />} />
+      <Route path=":id/update" element={<UpdateActivityRec />} />
+      ...
+}
+
+function UpdateActivityRec() {
+  ...
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchSelActivity = async () => {
+      try {
+        const res = await fetch(`${baseURL}/${id}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+        });
+  ...
+}
+```
+
 ### Other References:
 - https://www.healthhub.sg/programmes/children-health-ehb
 - https://ch-api.healthhub.sg/api/public/content/30de6c1e56d34868afb5fa6df399e082?v=35bba801&_gl=1*1a2ixlc*_ga*MzQ5NDMxMDc2LjE2OTk2NzExMDg.*_ga_VQW1KL2RMR*MTY5OTk2MDY0OC41LjEuMTY5OTk2MDY1MS41Ny4wLjA.
