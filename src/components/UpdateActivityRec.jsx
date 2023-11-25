@@ -1,11 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
-import { BabyContext } from "../App";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 
 function UpdateActivityRec() {
-  const { babyContext } = useContext(BabyContext);
-  const babyName = babyContext.babyName;
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
   const apiKey = import.meta.env.VITE_MY_KEY;
@@ -36,7 +33,7 @@ function UpdateActivityRec() {
     };
     fetchSelActivity();
     console.log(formData);
-  }, [id]);
+  }, []);
 
   const handleFormChange = (evt) => {
     setFormData((prevFormData) => ({
@@ -49,6 +46,7 @@ function UpdateActivityRec() {
     evt.preventDefault();
     const updatedFormData = new FormData(evt.target);
     const data = Object.fromEntries(updatedFormData);
+    console.log(data);
 
     const updateData = {
       fields: {
@@ -56,27 +54,26 @@ function UpdateActivityRec() {
       },
     };
 
+    async function updateActivityRecord(updateData) {
+      const response = await fetch(`${baseURL}/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify(updateData),
+      });
+      const updatedActivityRecord = await response.json();
+      console.log(JSON.stringify(updatedActivityRecord));
+    }
+
     console.log(updateData);
     updateActivityRecord(updateData);
     navigate("/home");
   };
 
-  async function updateActivityRecord() {
-    const response = await fetch(`${baseURL}/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify(updateData),
-    });
-    const updatedActivityRecord = await response.json();
-    console.log(JSON.stringify(updatedActivityRecord));
-  }
-
-  const handleRecordDel = (evt) => {
-    evt.preventDefault();
-    deleteActivityRecord(updateData);
+  const handleSubmitforDel = () => {
+    deleteActivityRecord();
     navigate("/home");
 
     async function deleteActivityRecord() {
@@ -106,7 +103,10 @@ function UpdateActivityRec() {
         }}
       >
         <form
-          onSubmit={handleSubmitforEdit}
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            handleSubmitforEdit(evt);
+          }}
           style={{
             minHeight: "300px",
             minWidth: "700px",
@@ -128,6 +128,7 @@ function UpdateActivityRec() {
             </label>
           ))}
           <button
+            type="submit"
             style={{
               marginTop: 20,
               marginBottom: 20,
@@ -140,11 +141,10 @@ function UpdateActivityRec() {
           </button>
         </form>
         <button
-          type="click"
-          onClick={handleRecordDel}
+          type="button"
+          onClick={handleSubmitforDel}
           style={{
             backgroundColor: "grey",
-            padding-top: "20px",
             color: "white",
             fontSize: "15px",
           }}

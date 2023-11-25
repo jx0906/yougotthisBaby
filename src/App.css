@@ -1,14 +1,19 @@
 #root {
     max-width: 1280px;
-    margin: 0 auto;
     padding: 2rem;
     text-align: center;
   }
 
   body{
   background: url("https://wallpaperaccess.com/full/5260178.jpg") no-repeat center;
-  background-size: 150%;
+  background-size: cover;
   margin: 0 auto;
+  padding: 0;
+  height: 100vh; 
+  /* for 100% fo the viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
   
   @media (prefers-reduced-motion: no-preference) {
